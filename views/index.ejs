@@ -2,7 +2,7 @@
 <%- include('./partials/nav') %>
 
 <main>
-  <h1>hello, <%= user ? user.profile.name : "friend" %></h1>
+  <h1>Syndic8</h1>
   <% if (user?.profile.avatar) { %>
     <div>
       <img
@@ -11,6 +11,18 @@
       />
     </div>
   <% } %>
+
+<h2>Keeping up with TV content made easy and social.</h2>
+<br>
+<h3>Enter a show title to search and add shows to your lists.</h3><br>
+
+<form action="">
+  <label for="search-input"></label>
+  <input value="enter show name" type="text" id="search-input">
+
+  <button type="submit">Search</button>
+</form>
+
 </main>
 
 <%- include('./partials/footer') %>
