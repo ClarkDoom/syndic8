@@ -3,4 +3,42 @@
 
 <h1>Profile</h1>
 
+<a href="/profile/edit">Edit Profile</a>
+
+<% if (user?.profile.avatar) { %>
+  <div>
+    <img
+    src="<%= user.profile.avatar %>"
+    alt="<%= user.profile.name %> avatar"
+    />
+  </div>
+  <% } %>
+
+  <!-- placeholder - needs to pull username from profile of user logged in  -->
+  <h3>@username</h1>
+  About Me:<br>
+  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Inventore amet enim fuga laudantium doloribus laborum eius aperiam, ullam autem explicabo molestias quibusdam placeat in rem architecto dicta perferendis, eum eligendi.
+
+
+  <h3>Top 8</h3>
+  <!-- need to pull top 8 shows here -->
+
+
+<h3>Recently Watched</h3>
+<!-- need to add last 8 shows marked seen it -->
+
+<h3>Latest Reviews</h3>
+
+<!-- PLACEHOLDER -->
+<% if (user?.profile.avatar) { %>
+  <div>
+    <img
+    src="<%= user.profile.avatar %>"
+    alt="<%= user.profile.name %> avatar"
+    />
+  </div>
+  <% } %>
+  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quidem beatae mollitia libero, accusantium dignissimos nobis molestias. Numquam repudiandae iure saepe tempore culpa! Officiis earum assumenda recusandae magnam, voluptatibus eaque doloremque. Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit soluta voluptatem tenetur veniam sed accusamus quaerat, doloribus nostrum blanditiis incidunt velit autem explicabo eos adipisci a perferendis quidem, at tempora.
+
+
 <%- include('../partials/footer') %>

@@ -6,6 +6,13 @@ function index(req, res) {
   })
 }
 
+function edit(req, res) {
+  res.render('profile/edit', {
+    title: "Profile"
+  })
+}
+
 export {
-  index
+  index,
+  edit
 }

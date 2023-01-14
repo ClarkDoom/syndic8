@@ -3,4 +3,22 @@
 
 <h1>Edit Profile</h1>
 
+
+<% if (user?.profile.avatar) { %>
+  <div>
+    <img
+    src="<%= user.profile.avatar %>"
+    alt="<%= user.profile.name %> avatar"
+    />
+  </div>
+  <% } %>
+
+  <!-- placeholder - needs to pull username from profile of user logged in  -->
+  <h3>@username</h1>
+
+  <h3>About Me</h3>
+  <textarea name="" id="" cols="30" rows="10"></textarea>
+  <br>
+  <button type="submit">Save</button>
+
 <%- include('../partials/footer') %>
