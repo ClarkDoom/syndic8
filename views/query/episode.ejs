@@ -1,6 +1,15 @@
 <%- include('../partials/html-head') %>
 <%- include('../partials/nav') %>
 
-<h1>Query View</h1>
+<h1>Episode View</h1>
+
+<% results.episodes.forEach(episode => { %>
+  
+  <%= episode.episode_number %><br>
+  <%= episode.name %><br>
+  <%= episode.air_date %><br>
+  <%= episode.overview %><br>
+  
+<% }) %>
 
 <%- include('../partials/footer') %>

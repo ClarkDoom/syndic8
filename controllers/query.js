@@ -32,8 +32,23 @@ function showSearch(req, res) {
   })
   .then((data) => {
     res.render('query/tv-show', {
-      results: data.results,
+      results: data,
       title: "Show Details"
+    })
+  })
+}
+
+
+function seasonSearch(req, res) {
+  axios.get(`https://api.themoviedb.org/3/tv/${req.params.id}/season/${req.params.season}?api_key=${process.env.TMDB_API_KEY}&language=en-US`)
+  .then(response => {
+    const data = response.data 
+    return data
+  })
+  .then((data) => {
+    res.render('query/episode', {
+      results: data,
+      title: "Season Details"
     })
   })
 }
@@ -43,5 +58,6 @@ function showSearch(req, res) {
 export {
   index,
   search,
-  showSearch
+  showSearch,
+  seasonSearch
 }
