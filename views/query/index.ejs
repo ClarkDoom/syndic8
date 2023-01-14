@@ -1,6 +1,15 @@
 <%- include('../partials/html-head') %>
 <%- include('../partials/nav') %>
 
-<h1>Query Index</h1>
+<h1>Search Results</h1>
+
+<% if (results) { %>
+
+  <% results.forEach(result => { %>
+    <%= result.name %><br>
+  <% }) %>
+
+<% } %>
+
 
 <%- include('../partials/footer') %>
