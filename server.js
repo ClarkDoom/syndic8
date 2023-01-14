@@ -23,6 +23,7 @@ import { router as indexRouter } from './routes/index.js'
 import { router as authRouter } from './routes/auth.js'
 import { router as watchlistRouter} from './routes/watchlist.js'
 import { router as currentlyWatchingRouter} from './routes/currently-watching.js'
+import { router as seenItRouter} from './routes/seen-it.js'
 
 // create the express app
 const app = express()
@@ -69,6 +70,7 @@ app.use('/', indexRouter)
 app.use('/auth', authRouter)
 app.use('/watchlist', watchlistRouter)
 app.use('/currently-watching', currentlyWatchingRouter)
+app.use('/seen-it', seenItRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
