@@ -23,9 +23,34 @@
       <%= season.name %><button>Seen It</button>
       <br>
     </a>
-
   <% }) %> 
 
+<h3>Leave a Review</h3>
+<textarea name="" id="" cols="30" rows="10"></textarea>
+
+<label class="rating-label">
+  <strong>Rating</strong>
+  <input
+    class="rating"
+    max="5"
+    oninput="this.style.setProperty('--value', this.value)"
+    step="0.5"
+    type="range"
+    value="1">
+</label>
+<br>
+<h3>User Reviews</h3>
+
+<!-- PLACEHOLDER -->
+<% if (user?.profile.avatar) { %>
+  <div>
+    <img
+    src="<%= user.profile.avatar %>"
+    alt="<%= user.profile.name %> avatar"
+    />
+  </div>
+  <% } %>
+  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quidem beatae mollitia libero, accusantium dignissimos nobis molestias. Numquam repudiandae iure saepe tempore culpa! Officiis earum assumenda recusandae magnam, voluptatibus eaque doloremque. Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit soluta voluptatem tenetur veniam sed accusamus quaerat, doloribus nostrum blanditiis incidunt velit autem explicabo eos adipisci a perferendis quidem, at tempora.
 <% } %>
 
 <%- include('../partials/footer') %>
