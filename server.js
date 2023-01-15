@@ -26,6 +26,7 @@ import { router as currentlyWatchingRouter} from './routes/currently-watching.js
 import { router as seenItRouter} from './routes/seen-it.js'
 import { router as profileRouter} from './routes/profile.js'
 import { router as queryRouter} from './routes/query.js'
+import { router as showRouter} from './routes/shows.js'
 
 // create the express app
 const app = express()
@@ -75,6 +76,7 @@ app.use('/currently-watching', currentlyWatchingRouter)
 app.use('/seen-it', seenItRouter)
 app.use('/profile', profileRouter)
 app.use('/query', queryRouter)
+app.use('/shows', showRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

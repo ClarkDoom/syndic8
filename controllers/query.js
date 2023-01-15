@@ -18,7 +18,8 @@ function search(req, res) {
   .then ((data) => {
     res.render('query/index', {
       results: data.results,
-      title: "Search Results"
+      title: "Search Results",
+      profile: req.params.id 
     })
   })
 }

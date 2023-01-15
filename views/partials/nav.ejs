@@ -4,7 +4,15 @@
 </head>
 <body>
   <nav class="navbar bg-primary" data-bs-theme="dark">
-    <a class="nav-link" href="/">Home</a>
+    <a class="nav-link" href="/">S8</a>
+    -
+    <form action="/query" method="POST">
+
+      <label for="search-input"></label>
+      <input name="query" value="enter show name" type="text" id="search-input">
+    
+      <button type="submit">Search</button>
+    </form>
     -
     <a class="nav-link" href="/watchlist">Watchlist</a>
     -
