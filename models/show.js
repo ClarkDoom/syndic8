@@ -18,10 +18,7 @@ const showSchema = new Schema({
   description: String,
   imageUrl: String,
   reviews: [reviewSchema],
-  showType: {
-    type: String, 
-    enum: ["watchlist", "currentlyWatching", "seenIt", "top8"]
-  }
+  showType: String
 }, {
   timestamps: true
 })

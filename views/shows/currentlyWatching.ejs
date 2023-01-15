@@ -3,4 +3,12 @@
 
 <h1>Currently Watching</h1>
 
+<ul>
+  <% shows.forEach(show => { %>
+    <% if (show.showType === "currentlyWatching") { %> 
+      <li><%= show.name %> </li>
+    <% } %> 
+  <% }) %>  
+</ul>
+
 <%- include('../partials/footer') %>

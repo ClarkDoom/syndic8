@@ -3,4 +3,12 @@
 
 <h1>Seen It</h1>
 
+<ul>
+  <% shows.forEach(show => { %>
+    <% if (show.showType === "seenIt") { %> 
+      <li><%= show.name %> </li>
+    <% } %> 
+  <% }) %>  
+</ul>
+
 <%- include('../partials/footer') %>
