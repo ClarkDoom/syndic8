@@ -5,7 +5,7 @@ import { Show } from '../models/show.js'
 function create(req,res) {
   Show.create(req.body)
   .then(show => {
-    res.redirect('/')
+    res.redirect(`/shows/${req.body.showType}`)
   })
   // .catch(err => {
   //   console.log(err)
