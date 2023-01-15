@@ -13,6 +13,17 @@ function create(req,res) {
   // })
 }
 
+function watchlist(req, res) {
+  Show.find({})
+  .then(shows => {
+    res.render('shows/index', {
+      title: "Watchlist",
+      shows: shows
+    })
+  })
+}
+
 export {
-  create
+  create,
+  watchlist
 }

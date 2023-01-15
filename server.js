@@ -21,9 +21,6 @@ import'./config/passport.js'
 // import routes
 import { router as indexRouter } from './routes/index.js'
 import { router as authRouter } from './routes/auth.js'
-import { router as watchlistRouter} from './routes/watchlist.js'
-import { router as currentlyWatchingRouter} from './routes/currently-watching.js'
-import { router as seenItRouter} from './routes/seen-it.js'
 import { router as profileRouter} from './routes/profile.js'
 import { router as queryRouter} from './routes/query.js'
 import { router as showRouter} from './routes/shows.js'
@@ -71,9 +68,6 @@ app.use(passDataToView)
 // router middleware
 app.use('/', indexRouter)
 app.use('/auth', authRouter)
-app.use('/watchlist', watchlistRouter)
-app.use('/currently-watching', currentlyWatchingRouter)
-app.use('/seen-it', seenItRouter)
 app.use('/profile', profileRouter)
 app.use('/query', queryRouter)
 app.use('/shows', showRouter)
