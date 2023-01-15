@@ -113,22 +113,45 @@ function deleteReview(req, res) {
   })
 }
 
-function reviewDetails(req,res) {
-  console.log("ALERT", req.params.reviewId)
+function editReview(req,res) {
   Review.findById(req.params.reviewId)
   .then(review => {
-    res.render('shows/review', {
-      title: "Review Details", 
-      review: review,
+    res.render('shows/editReview', {
+      title: "Edit Review",
+      review: review
     })
-    console.log("ALERT", review)
-  })
-  .catch(err => {
-    console.log("ALERT - CAUGHT AN ERROR")
-    console.log(err)
-    res.redirect('/')
   })
 }
+
+function reviewDetails(req,res) {
+  // Show.findById(req.params.id)
+  // .then(show => {
+  //   Review.findById(req.params.reviewId)
+  //   .then(review => {
+  //     res.render('shows/review', {
+  //       title: "Review Details", 
+  //       review: review,
+  //     })
+  //   })
+  //})
+}
+  
+  
+  
+//   Review.findById(req.params.reviewId)
+//   .then(review => {
+//     res.render('shows/review', {
+//       title: "Review Details", 
+//       review: review,
+//     })
+//     console.log("ALERT", review)
+//   })
+//   .catch(err => {
+//     console.log("ALERT - CAUGHT AN ERROR")
+//     console.log(err)
+//     res.redirect('/')
+//   })
+// }
 
 
 export {
@@ -140,5 +163,6 @@ export {
   show,
   createReview,
   deleteReview as delete,
-  reviewDetails
+  reviewDetails,
+  editReview
 }

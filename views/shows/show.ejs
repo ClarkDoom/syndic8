@@ -39,9 +39,9 @@ method="POST"
       <% show.reviews.forEach(function(review) { %>
         <% total += review.rating %>
         <tr>
-          <td><a href="/shows/<%= show.id %>/<%= review.id %> "><%= review.reviewTitle %></a></td>
+          <td><a href="/shows/<%= show.id %>/<%= review.id %>"><%= review.reviewTitle %></a></td>
           <td><%= review.reviewContent %></td>
-          <td>Edit</td>
+          <td><a href="/shows/<%= show.id %>/<%= review.id %>/edit">Edit</a></td>
           <td> <form 
               action="/shows/<%= show._id %>/<%= review._id %>?_method=DELETE" 
               method="POST"
