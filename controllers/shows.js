@@ -13,11 +13,41 @@ function create(req,res) {
   // })
 }
 
-function watchlist(req, res) {
+function index(req, res) {
   Show.find({})
   .then(shows => {
     res.render('shows/index', {
+      title: "Shows",
+      shows: shows
+    })
+  })
+}
+
+function watchlist(req, res) {
+  Show.find({})
+  .then(shows => {
+    res.render('shows/watchlist', {
       title: "Watchlist",
+      shows: shows
+    })
+  })
+}
+
+function currentlyWatching(req, res) {
+  Show.find({})
+  .then(shows => {
+    res.render('shows/currentlyWatching', {
+      title: "Currently Watching",
+      shows: shows
+    })
+  })
+}
+
+function seenIt(req, res) {
+  Show.find({})
+  .then(shows => {
+    res.render('shows/seenIt', {
+      title: "Seen It",
       shows: shows
     })
   })
@@ -25,5 +55,8 @@ function watchlist(req, res) {
 
 export {
   create,
-  watchlist
+  index,
+  watchlist,
+  currentlyWatching,
+  seenIt,
 }
