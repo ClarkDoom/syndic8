@@ -20,7 +20,7 @@ const showSchema = new Schema({
   reviews: [reviewSchema],
   showType: {
     type: String, 
-    enum: ["watchlist", "currently watching", "seen it"]
+    enum: ["watchlist", "currentlyWatching", "seenIt", "top8"]
   }
 }, {
   timestamps: true
