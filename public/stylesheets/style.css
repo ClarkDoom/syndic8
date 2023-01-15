@@ -40,6 +40,10 @@ main {
   margin-left: auto;
 }
 
+.hidden {
+  display: none;
+}
+
 .rating {
   --dir: right;
   --fill: gold;

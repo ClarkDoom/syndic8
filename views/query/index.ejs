@@ -17,7 +17,14 @@
     <br>
 
     <form id="new-form" action="/shows/new" method="POST">
-      <input value="<%= result.name %> " type="text" name="name">
+      
+      <input class="hidden" value="<%= result.name %> " type="text" name="name">
+      <input class="hidden" value="<%= result.id %> " type="text" name="tmbdShowId">
+      
+      <input class="hidden" value="<%= result.overview %> " type="text" name="description">
+      <input class="hidden" value="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/<%= result.poster_path %>" type="text" name="imageUrl">
+      <input class="hidden" value="watchlist" type="text" name="showType">
+
       <button type="submit">WL</button>
     </form>
     <button>CW</button>
