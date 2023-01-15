@@ -5,6 +5,7 @@ const Schema = mongoose.Schema
 const reviewSchema = new Schema({
   rating: {type: Number, min: 1, max: 5, default: 5},
   tmbdShowId: String,
+  reviewTitle: String,
   reviewContent: String,
   author: String
 },{
@@ -24,7 +25,9 @@ const showSchema = new Schema({
 })
 
 const Show = mongoose.model('Show', showSchema)
+const Review = mongoose.model('Review', reviewSchema)
 
 export {
-  Show
+  Show,
+  Review
 }
