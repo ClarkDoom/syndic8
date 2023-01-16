@@ -51,6 +51,14 @@ function seenIt(req, res) {
   })
 }
 
+
+function deleteShow(req, res) {
+  Show.findByIdAndDelete(req.params.id)
+  .then(show => {
+    res.redirect(`/shows`)
+  })
+}
+
 function show(req,res) {
   Show.findById(req.params.id)
   .then(show => {
@@ -107,6 +115,31 @@ function editReview(req,res) {
 
 function updateReview(req, res) {
   // Show.findById(req.params.id)
+  // .then(show =>{
+  //   const review = show.reviews.id(req.params.reviewId)
+  //   review.findByIdAndUpdate(req.params.reviewId, req.body, {new: true})
+  //   res.redirect('/shows')
+  // })
+
+  // Show.findById(req.params.id)
+  // .then(show =>{
+  //   const review = show.reviews.id(req.params.reviewId)
+  //   review.findByIdAndUpdate(req.params.reviewId, req.body, {new: true})
+  //   res.redirect('/shows')
+  // })
+
+
+  // Show.findById(req.params.id)
+  // .then(show =>{
+  //   const review = show.reviews.id(req.params.reviewId)
+  //   show.save()
+  //   .then(()=> {
+  //     review.findByIdAndUpdate(req.params.reviewId, req.body, {new: true})
+  //     res.redirect('/shows')
+  //   })
+  // })
+
+  // Show.findById(req.params.id)
   // .then(show => {
   //   const review = show.reviews.id(req.params.reviewId)
   //   console.log("ALERT-Review", review)
@@ -150,8 +183,9 @@ export {
   seenIt,
   show,
   createReview,
-  deleteReview as delete,
+  deleteReview,
   reviewDetails,
   editReview,
-  updateReview
+  updateReview,
+  deleteShow
 }

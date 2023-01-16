@@ -6,6 +6,11 @@
 <ul>
   <% shows.forEach(show => { %>
     <li><%= show.name %> </li>
+    <li>
+      <form action="/shows/<%= show._id %>?_method=DELETE" method="POST">
+        <button>Delete</button>
+      </form>
+    </li>
     <% }) %>  
 </ul>
 
