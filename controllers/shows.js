@@ -9,10 +9,6 @@ function create(req,res) {
   .then(show => {
     res.redirect(`/shows/${req.body.showType}`)
   })
-  // .catch(err => {
-  //   console.log(err)
-  //   res.redirect('/movies')
-  // })
 }
 
 function index(req, res) {
@@ -63,29 +59,14 @@ function show(req,res) {
       show: show
     })
   })
-  // axios.get(`https://api.themoviedb.org/3/tv/${req.params.id}?api_key=${process.env.TMDB_API_KEY}&language=en-US`)
-  // .then(response => {
-  //   console.log(response.data)
-  //   const data = response.data 
-  //   return data
-  // })
-  // .then((data) => {
-  //   res.render('shows/show', {
-  //     results: data,
-  //     title: "Show Details"
-  //   })
-  // })
 }
 
 function createReview(req, res) {
-   // find the movie by its id
   Show.findById(req.params.id)
-   // push req.body (form data) into the embedded schema
   .then(show => {
     show.reviews.push(req.body)
     show.save()
     .then(() => {
-       // redirect back to movie show view
       res.redirect(`/shows/${show._id}`)
     })
     .catch(err => {
@@ -97,7 +78,6 @@ function createReview(req, res) {
     console.log(err)
     res.redirect('/')
   })
-   // save the updated movie document
 }
 
 function deleteReview(req, res) {
@@ -136,35 +116,8 @@ function updateReview(req, res) {
 }
 
 function reviewDetails(req,res) {
-  // Show.findById(req.params.id)
-  // .then(show => {
-  //   Review.findById(req.params.reviewId)
-  //   .then(review => {
-  //     res.render('shows/review', {
-  //       title: "Review Details", 
-  //       review: review,
-  //     })
-  //   })
-  //})
-}
-  
-  
-  
-//   Review.findById(req.params.reviewId)
-//   .then(review => {
-//     res.render('shows/review', {
-//       title: "Review Details", 
-//       review: review,
-//     })
-//     console.log("ALERT", review)
-//   })
-//   .catch(err => {
-//     console.log("ALERT - CAUGHT AN ERROR")
-//     console.log(err)
-//     res.redirect('/')
-//   })
-// }
 
+}
 
 export {
   create,

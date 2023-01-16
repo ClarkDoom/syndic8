@@ -16,14 +16,6 @@ function edit(req, res) {
 
 function addTop8(req, res) {
   console.log("ALERT ", req.user)
-  // Profile.findById(req.user.profile._id)
-  // .then(profile => {
-  //   profile.top8.push(req.body)
-  //   profile.save()
-  //   .then(()=> {
-  //     res.redirect(`/`)
-  //   })
-  // })
 }
 
 export {
