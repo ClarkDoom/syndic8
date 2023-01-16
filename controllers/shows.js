@@ -114,6 +114,18 @@ function editReview(req,res) {
 }
 
 function updateReview(req, res) {
+  console.log(req.params.id)
+  // Show.findById(req.params.id)
+  // .then(show => {
+  //   const review = show.reviews.id(req.params.reviewId)
+  //   console.log(review)
+  //   res.render('shows/index', {
+  //     title: "insert title"
+  //   })
+  // })
+  // const review = show.reviews
+  
+  
   // Show.findById(req.params.id)
   // .then(show =>{
   //   const review = show.reviews.id(req.params.reviewId)
