@@ -25,9 +25,7 @@ const showSchema = new Schema({
 })
 
 const Show = mongoose.model('Show', showSchema)
-const Review = mongoose.model('Review', reviewSchema)
 
 export {
   Show,
-  Review
 }

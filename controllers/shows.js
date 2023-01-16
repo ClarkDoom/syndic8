@@ -1,7 +1,6 @@
 // will need to import models at some point
 import axios from 'axios'
 import { Show } from '../models/show.js'
-import { Review } from '../models/show.js'
 
 
 function create(req,res) {
@@ -114,73 +113,17 @@ function editReview(req,res) {
 }
 
 function updateReview(req, res) {
-  console.log(req.params.id)
-  // Show.findById(req.params.id)
-  // .then(show => {
-  //   const review = show.reviews.id(req.params.reviewId)
-  //   console.log(review)
-  //   res.render('shows/index', {
-  //     title: "insert title"
-  //   })
-  // })
-  // const review = show.reviews
-  
-  
-  // Show.findById(req.params.id)
-  // .then(show =>{
-  //   const review = show.reviews.id(req.params.reviewId)
-  //   review.findByIdAndUpdate(req.params.reviewId, req.body, {new: true})
-  //   res.redirect('/shows')
-  // })
-
-  // Show.findById(req.params.id)
-  // .then(show =>{
-  //   const review = show.reviews.id(req.params.reviewId)
-  //   review.findByIdAndUpdate(req.params.reviewId, req.body, {new: true})
-  //   res.redirect('/shows')
-  // })
-
-
-  // Show.findById(req.params.id)
-  // .then(show =>{
-  //   const review = show.reviews.id(req.params.reviewId)
-  //   show.save()
-  //   .then(()=> {
-  //     review.findByIdAndUpdate(req.params.reviewId, req.body, {new: true})
-  //     res.redirect('/shows')
-  //   })
-  // })
-
-  // Show.findById(req.params.id)
-  // .then(show => {
-  //   const review = show.reviews.id(req.params.reviewId)
-  //   console.log("ALERT-Review", review)
-  //   review.findByIdAndUpdate(req.params.reviewId, req.body, {new: true})
-  //   .then(review => {
-  //     res.redirect('/shows')
-  //   })
-  // })
-
-  // console.log("ALERT-ShowId", req.params.id)
-  // for (let key in req.body) {
-  //   if (req.body[key] === "") delete req.body[key]
-  // }
-  // Review.findByIdAndUpdate(req.params.reviewId, req. body, {new: true})
-  // .then(review => {
-  //   console.log("ALERT-REVIEW", review)
-  //   res.redirect("/shows")
-  // })
-
-
-  // Show.findById(req.params.id)
-  // .then(show => {
-  //   const review = show.reviews.id(req.params.reviewId)
-  //   console.log("ALERT-Review", review)
-  //   review.update(req.body, function(err, result){})
-  //   .then(review => {
-  //     res.redirect('/shows')
-  //   })
-  // })
+  Show.findById(req.params.id)
+  .then((show) => {
+    const review = show.reviews.id(req.params.reviewId);
+    review.set(req.body);
+    return show.save();
+  })
+  .then((show) => {
+    res.redirect(`/shows/${show._id}`)
+    // res.send({ show });
+  })
+  .catch(e => res.status(400).send(e));
 }
 
 function reviewDetails(req,res) {
