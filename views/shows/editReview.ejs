@@ -1,17 +1,33 @@
 <%- include('../partials/html-head') %>
 <%- include('../partials/nav') %>
 
-
-<h1><%= review.reviewContent %></h1>
+<h1><%= review.reviewTitle %> </h1>
+<h2>Rating: <%= review.rating %></h2>
 
 <form 
 id="add-review-form"
 action="/show/<%= review %>?_method=PUT"
 method="POST"
 >
-  <input placeholder="Review Title" type="text" name="reviewTitle""><br>
-  <textarea placeholder="Enter Review Here" name="reviewContent" id="" cols="30" rows="10"></textarea>
+
+  <input value="<%= review.reviewTitle %>" type="text" name="reviewTitle""><br>
+  <textarea name="reviewContent" id="" cols="30" rows="10"><%= review.reviewContent %>"</textarea>
   <br>
+
+  <label for="rating-select">Rating:</label>
+  <select name="rating" id="rating-select">
+    <option value="1">.5</option>
+    <option value="1">1</option>
+    <option value="1">1.5</option>
+    <option value="2">2</option>
+    <option value="2">2.5</option>
+    <option value="3">3</option>
+    <option value="3">3.5</option>
+    <option value="4">4</option>
+    <option value="4">4.5</option>
+    <option value="5">5</option>
+  </select>
+  <br><br>
   <button type="submit">submit</button>
 </form>
 <br><br>
