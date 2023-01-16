@@ -114,11 +114,23 @@ function deleteReview(req, res) {
 }
 
 function editReview(req,res) {
+  Show.findById(req.params.id)
+  .then(show => {
+    const review = show.reviews.id(req.params.reviewId)
+      res.render('shows/editReview', {
+        title: "Edit Review",
+        show,
+        review,
+      })
+  })
+}
+
+function updateReview(req, res) {
   Review.findById(req.params.reviewId)
   .then(review => {
-    res.render('shows/editReview', {
-      title: "Edit Review",
-      review: review
+    review.updateOne(req.body)
+    .then(()=> {
+      res.redirect(`/shows/${show._id}`)
     })
   })
 }
@@ -164,5 +176,6 @@ export {
   createReview,
   deleteReview as delete,
   reviewDetails,
-  editReview
+  editReview,
+  updateReview
 }

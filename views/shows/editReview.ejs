@@ -1,9 +1,12 @@
 <%- include('../partials/html-head') %>
 <%- include('../partials/nav') %>
 
+
+<h1><%= review.reviewContent %></h1>
+
 <form 
 id="add-review-form"
-action=""
+action="/show/<%= review %>?_method=PUT"
 method="POST"
 >
   <input placeholder="Review Title" type="text" name="reviewTitle""><br>
