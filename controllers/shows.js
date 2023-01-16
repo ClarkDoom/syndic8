@@ -88,6 +88,7 @@ function createReview(req, res) {
 }
 
 function showReview(req, res) {
+  //need to pass comment data somehow here so that its available on the view to render ejs
   Show.findById(req.params.id)
   .then(show => {
     const review = show.reviews.id(req.params.reviewId)
@@ -138,6 +139,21 @@ function updateReview(req, res) {
   .catch(e => res.status(400).send(e));
 }
 
+function createComment(req, res) {
+  Show.findById(req.params.id)
+  .then((show) => {
+    const review = show.reviews.id(req.params.reviewId);
+    console.log(review)
+    review.comments.push(req.body);
+    return show.save();
+  })
+  .then((show) => {
+    res.redirect(`/shows`)
+    // res.send({ show });
+  })
+  .catch(e => res.status(400).send(e));
+}
+
 export {
   create,
   index,
@@ -150,5 +166,6 @@ export {
   deleteReview,
   editReview,
   updateReview,
-  deleteShow
+  deleteShow,
+  createComment
 }

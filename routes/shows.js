@@ -16,7 +16,9 @@ router.get('/:id/:reviewId', showCtrl.showReview)
 router.get('/:id/:reviewId/edit', showCtrl.editReview)
 
 router.post('/new', showCtrl.create)
+
 router.post('/:id/reviews', showCtrl.createReview)
+router.post('/:id/:reviewId/add-comment', showCtrl.createComment)
 
 router.put('/:id/:reviewId', showCtrl.updateReview)
 

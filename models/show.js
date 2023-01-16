@@ -2,12 +2,21 @@ import mongoose from "mongoose"
 
 const Schema = mongoose.Schema
 
+const commentSchema = new Schema({
+  commentor: String,
+  commentText: String,
+  reaction: String
+},{
+  timestamps: true
+})
+
 const reviewSchema = new Schema({
   rating: {type: Number, min: 1, max: 5, default: 5},
   tmbdShowId: String,
   reviewTitle: String,
   reviewContent: String,
-  author: String
+  author: String,
+  comments: [commentSchema]
 },{
   timestamps: true
 })

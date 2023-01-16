@@ -14,4 +14,73 @@ Review Content: <%= review.reviewContent %>
 
 Review Rating: <%= review.rating %> 
 
+<h1>Leave A Comment</h1>
+
+<form 
+  id="add-comment-form" 
+  action="/shows/<%= show._id %>/<%= review._id %>/add-comment"
+  method="POST"
+>
+  <!-- add profile id variable to value -->
+  <label for="commentor">Commentor</label>
+  <br>
+  <input value="" type="text" id="commentor" name="commentor">
+  <br><br>
+
+  <label for="reaction-select">Reaction:</label>
+  <select name="reaction" id="reaction-select">
+    <option value="agree">👍</option>
+    <option value="disagree">👎</option>
+    <option value="neutral">😑</option>
+    <option value="funny">😂</option>
+    <option value="interesting">🧠</option>
+  </select>
+  <br>
+  <br>
+
+  <label for="comment-text">Comment:</label>
+  <br>
+  <textarea name="commentText" id="comment-text" cols="30" rows="10"></textarea>
+  <br>
+  <button type="submit">Save comment</button>
+</form>
+
+<h1>Comments</h1>
+
+<% if (review.comments.length) { %>
+  <table>
+    <thead>
+      <tr>
+        <!-- update to match comment model  -->
+        <th>Commentor</th>
+        <th>Comment Text</th>
+        <th>Reaction</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% let total = 0 %> 
+      <% review.comments.forEach(function(comment) { %>
+        <% total += comment.rating %>
+        <tr>
+          <td><%= comment.commentor %></td>
+          <td><%= comment.commentText %></td>
+          <td><%= comment.reaction %> </td>
+          <td>Edit</td>
+          <td> 
+            <form 
+              action="" 
+              method="POST"
+            >
+              <button>Delete</button>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+<% } else { %>
+  <h3>No Comments Yet</h3>
+<% } %>
+
 <%- include('../partials/footer') %>
