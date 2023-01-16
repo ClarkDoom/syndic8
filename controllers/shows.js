@@ -97,22 +97,45 @@ function editReview(req,res) {
   Show.findById(req.params.id)
   .then(show => {
     const review = show.reviews.id(req.params.reviewId)
-      res.render('shows/editReview', {
-        title: "Edit Review",
-        show,
-        review,
-      })
+    res.render('shows/editReview', {
+      title: "Edit Review",
+      show,
+      review,
+    })
   })
 }
 
 function updateReview(req, res) {
-  Review.findById(req.params.reviewId)
-  .then(review => {
-    review.updateOne(req.body)
-    .then(()=> {
-      res.redirect(`/shows/${show._id}`)
-    })
-  })
+  // Show.findById(req.params.id)
+  // .then(show => {
+  //   const review = show.reviews.id(req.params.reviewId)
+  //   console.log("ALERT-Review", review)
+  //   review.findByIdAndUpdate(req.params.reviewId, req.body, {new: true})
+  //   .then(review => {
+  //     res.redirect('/shows')
+  //   })
+  // })
+
+  // console.log("ALERT-ShowId", req.params.id)
+  // for (let key in req.body) {
+  //   if (req.body[key] === "") delete req.body[key]
+  // }
+  // Review.findByIdAndUpdate(req.params.reviewId, req. body, {new: true})
+  // .then(review => {
+  //   console.log("ALERT-REVIEW", review)
+  //   res.redirect("/shows")
+  // })
+
+
+  // Show.findById(req.params.id)
+  // .then(show => {
+  //   const review = show.reviews.id(req.params.reviewId)
+  //   console.log("ALERT-Review", review)
+  //   review.update(req.body, function(err, result){})
+  //   .then(review => {
+  //     res.redirect('/shows')
+  //   })
+  // })
 }
 
 function reviewDetails(req,res) {

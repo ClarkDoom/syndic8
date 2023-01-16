@@ -20,7 +20,7 @@ method="POST"
   <input placeholder="Review Title" type="text" name="reviewTitle" id="review-title"><br>
 
   <label for="review-content">Review:</label>
-  <textarea placeholder="Enter Review Here" name="review-content" id="reviewContent" cols="30" rows="10"></textarea><br>
+  <textarea placeholder="Enter Review Here" name="reviewContent" id="reviewContent" cols="30" rows="10"></textarea><br>
 
   <label for="rating-select">Rating:</label>
   <select name="rating" id="rating-select">
@@ -47,6 +47,7 @@ method="POST"
       <tr>
         <th>Review Title</th>
         <th>Review</th>
+        <th>Rating</th>
         <th>Edit</th>
         <th>Delete</th>
         <th>Review ID</th>
@@ -59,6 +60,7 @@ method="POST"
         <tr>
           <td><%= review.reviewTitle %></td>
           <td><%= review.reviewContent %></td>
+          <td><%= review.rating %> </td>
           <td><a href="/shows/<%= show._id %>/<%= review._id %>/edit">Edit</a></td>
           <td> <form 
               action="/shows/<%= show._id %>/<%= review._id %>?_method=DELETE" 

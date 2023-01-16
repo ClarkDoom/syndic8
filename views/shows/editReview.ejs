@@ -6,12 +6,12 @@
 
 <form 
 id="add-review-form"
-action="/show/<%= review %>?_method=PUT"
+action="/shows/<%= show._id %>/<%= review._id %>?_method=PUT"
 method="POST"
 >
 
   <input value="<%= review.reviewTitle %>" type="text" name="reviewTitle""><br>
-  <textarea name="reviewContent" id="" cols="30" rows="10"><%= review.reviewContent %>"</textarea>
+  <textarea name="reviewContent" id="" cols="30" rows="10"><%= review.reviewContent %></textarea>
   <br>
 
   <label for="rating-select">Rating:</label>

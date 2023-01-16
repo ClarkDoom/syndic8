@@ -15,6 +15,8 @@ router.post('/new', showCtrl.create)
 router.post('/:id/reviews', showCtrl.createReview)
 
 router.put('/:id/:reviewId', showCtrl.updateReview)
+// PUT shows/:id/:reviewId
+router.put('/:id/:reviewId', showCtrl.updateReview)
 
 router.delete('/:id/:reviewId', showCtrl.delete)
 
