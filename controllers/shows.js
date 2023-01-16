@@ -87,6 +87,18 @@ function createReview(req, res) {
   })
 }
 
+function showReview(req, res) {
+  Show.findById(req.params.id)
+  .then(show => {
+    const review = show.reviews.id(req.params.reviewId)
+    res.render('shows/review', {
+      title: "Review Details",
+      show,
+      review,
+    })
+  })
+}
+
 function deleteReview(req, res) {
   Show.findById(req.params.id)
   .then(show => {
@@ -126,10 +138,6 @@ function updateReview(req, res) {
   .catch(e => res.status(400).send(e));
 }
 
-function reviewDetails(req,res) {
-
-}
-
 export {
   create,
   index,
@@ -138,8 +146,8 @@ export {
   seenIt,
   show,
   createReview,
+  showReview,
   deleteReview,
-  reviewDetails,
   editReview,
   updateReview,
   deleteShow

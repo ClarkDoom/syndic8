@@ -58,7 +58,7 @@ method="POST"
       <% show.reviews.forEach(function(review) { %>
         <% total += review.rating %>
         <tr>
-          <td><%= review.reviewTitle %></td>
+          <td><a href="/shows/<%= show._id %>/<%= review._id %>"><%= review.reviewTitle %></a></td>
           <td><%= review.reviewContent %></td>
           <td><%= review.rating %> </td>
           <td><a href="/shows/<%= show._id %>/<%= review._id %>/edit">Edit</a></td>
