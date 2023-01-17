@@ -17,10 +17,13 @@ router.get('/:id/:reviewId/edit', showCtrl.editReview)
 
 router.post('/new', showCtrl.create)
 
+
 router.post('/:id/reviews', showCtrl.createReview)
 router.post('/:id/:reviewId/add-comment', showCtrl.createComment)
 
 router.put('/:id/:reviewId', showCtrl.updateReview)
+
+router.patch('/:id/update-show-type', showCtrl.updateShowType)
 
 router.delete('/:id', showCtrl.deleteShow)
 router.delete('/:id/:reviewId', showCtrl.deleteReview)

@@ -10,6 +10,13 @@
       <img width=10%" src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/<%= show.imageUrl %>" alt="">
       <br>
       <%= show.description %>
+      <form action="/shows/<%= show._id %>/update-show-type?_method=PATCH" method="POST">
+        <input class="hidden" value="seen-it" type="text" name="showType">
+        <button type="submit">Seen It</button>
+      </form>
+      <form action="/shows/<%= show._id %>?_method=DELETE" method="POST">
+        <button>Remove</button>
+      </form>
       <br>
       <br>
     <% } %> 

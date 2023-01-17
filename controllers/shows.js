@@ -54,7 +54,7 @@ function seenIt(req, res) {
 function deleteShow(req, res) {
   Show.findByIdAndDelete(req.params.id)
   .then(show => {
-    res.redirect(`/shows`)
+    res.redirect(`/shows/${show.showType}`)
   })
 }
 
@@ -169,6 +169,20 @@ function deleteComment(req, res) {
   .catch(e => res.status(400).send(e));
 }
 
+function updateShowType(req,res) {
+  for (let key in req.body) {
+    if (req.body[key] === "") delete req.body[key]
+  }
+  Show.findByIdAndUpdate(req.params.id, req.body, {new: true})
+  .then(show => {
+    res.redirect(`/shows/${show.showType}`)
+  })
+  .catch(err => {
+    console.log(err)
+    res.redirect('/shows')
+  })
+}
+
 export {
   create,
   index,
@@ -183,5 +197,6 @@ export {
   updateReview,
   deleteShow,
   createComment,
-  deleteComment
+  deleteComment,
+  updateShowType
 }
