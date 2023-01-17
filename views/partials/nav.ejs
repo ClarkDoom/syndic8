@@ -21,7 +21,9 @@
     -
     <a class="nav-link" href="/shows/seen-it">Seen It</a>
     -
-    <a class="nav-link" href="/profile">Profile</a>
+    <% if (user?.profile.avatar) { %>
+      <a class="nav-link" href="/profile/<%= user.profile._id %>">Profile</a>
+    <% } %>
 
     <% if (user) { %>
       <a href="/auth/logout" class="right">

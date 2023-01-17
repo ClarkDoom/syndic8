@@ -14,16 +14,15 @@
   <% } %>
 
   <!-- placeholder - needs to pull username from profile of user logged in  -->
-  <h3>@username</h1>
-
-  <h3>About Me</h3>
   
-  <label for="username-input">Username: </label>
-  <input type="text" name="userName" id="username-input"><br>
+  <form action="/profile/<%= user.profile._id %>/edit?_method=PATCH" method="POST">
+    <label for="username-input">Username: </label>
+    <input value="<%= profile.userName %>" type="text" name="userName" id="username-input"><br>
 
-  <label for="about-me-input">About Me: </label>
-  <textarea id="about-me-input" name="aboutMe" id="about-me" cols="30" rows="10"></textarea>
-  <br>
-  <button type="submit">Save</button>
+    <label for="about-me-input">About Me: </label>
+    <textarea id="about-me-input" name="aboutMe" id="about-me" cols="30" rows="10"><%= profile.aboutMe %></textarea>
+    <br>
+    <button type="submit">Save</button>
+  </form>
 
 <%- include('../partials/footer') %>

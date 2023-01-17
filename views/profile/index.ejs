@@ -3,7 +3,7 @@
 
 <h1>Profile</h1>
 
-<a href="/profile/edit">Edit Profile</a>
+<a href="/profile/<%= user.profile._id %>/edit">Edit Profile</a>
 
 <% if (user?.profile.avatar) { %>
   <div>
@@ -15,9 +15,9 @@
   <% } %>
 
   <!-- placeholder - needs to pull username from profile of user logged in  -->
-  <h3>@username</h1>
+  <h3>@username: <%= profile.userName %> </h1>
   About Me:<br>
-  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Inventore amet enim fuga laudantium doloribus laborum eius aperiam, ullam autem explicabo molestias quibusdam placeat in rem architecto dicta perferendis, eum eligendi.
+  <p><%= profile.aboutMe %></p>
 
 
   <h3>Top 8</h3>
