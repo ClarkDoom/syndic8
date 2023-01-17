@@ -4,6 +4,7 @@
 <h1>Profile</h1>
 
 <a href="/profile/<%= user.profile._id %>/edit">Edit Profile</a>
+<br><br>
 
 <% if (user?.profile.avatar) { %>
   <div>
@@ -21,24 +22,58 @@
 
 
   <h3>Top 8</h3>
-  <!-- need to pull top 8 shows here -->
+  <ul>
+    <% shows.forEach(show => { %>
+      <% if (show.showType === "top8") { %> 
+        <h3><a href="/shows/<%= show._id %>"><%= show.name %></a></h3>
+        <img width=10%" src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/<%= show.imageUrl %>" alt="">
+        <br>
+        <%= show.description %>
+        <br>
+        <br>
+      <% } %> 
+    <% }) %>  
+  </ul>
 
 
-<h3>Recently Watched</h3>
-<!-- need to add last 8 shows marked seen it -->
+<h3>Currently Watching</h3>
+<ul>
+  <% shows.forEach(show => { %>
+    <% if (show.showType === "currently-watching") { %> 
+      <h3><a href="/shows/<%= show._id %>"><%= show.name %></a></h3>
+      <img width=10%" src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/<%= show.imageUrl %>" alt="">
+      <br>
+      <%= show.description %>
+      <br>
+      <br>
+    <% } %> 
+  <% }) %>  
+</ul>
 
 <h3>Latest Reviews</h3>
 
-<!-- PLACEHOLDER -->
-<% if (user?.profile.avatar) { %>
-  <div>
-    <img
-    src="<%= user.profile.avatar %>"
-    alt="<%= user.profile.name %> avatar"
-    />
-  </div>
-  <% } %>
-  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quidem beatae mollitia libero, accusantium dignissimos nobis molestias. Numquam repudiandae iure saepe tempore culpa! Officiis earum assumenda recusandae magnam, voluptatibus eaque doloremque. Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit soluta voluptatem tenetur veniam sed accusamus quaerat, doloribus nostrum blanditiis incidunt velit autem explicabo eos adipisci a perferendis quidem, at tempora.
+<ul>
+  <% shows.forEach(show => { %>
+    <% if (show.showType === "seen-it") { %> 
+      <h3><a href="/shows/<%= show._id %>"><%= show.name %></a></h3>
+      <img width=10%" src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/<%= show.imageUrl %>" alt=""><br>
+      <% show.reviews.forEach(review => { %>
+        Review Title: 
+        <%= review.reviewTitle %> 
+        <br>
+        Review:
+        <%= review.reviewContent %>
+        <br>
+        Rating: 
+        <%= review.rating %> 
+      <% }) %>
+      <br>
+      <br>
+    <% } %> 
+  <% }) %>  
+</ul>
+
+
 
 
 <%- include('../partials/footer') %>

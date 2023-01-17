@@ -1,15 +1,19 @@
 // will need to import models at some point
 
 import { Profile } from "../models/profile.js"
+import { Show } from "../models/show.js"
 
 function index(req, res) {
-  Profile.findById(req.params.profileId)
-  .then(profile => {
-    res.render('profile/index', {
-      title: "Profile",  
-      profile 
+  Show.find({})
+  .then(shows => {
+    Profile.findById(req.params.profileId)
+    .then(profile => {
+      res.render('profile/index', {
+        title: "Profile",  
+        profile,
+        shows 
+      })
     })
-
   })
 }
 

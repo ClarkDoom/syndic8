@@ -6,7 +6,11 @@ import { Show } from '../models/show.js'
 function create(req,res) {
   Show.create(req.body)
   .then(show => {
-    res.redirect(`/shows/${req.body.showType}`)
+    if (show.showType === "top8") {
+      res.redirect(`/`)
+    } else {
+      res.redirect(`/shows/${req.body.showType}`)
+    }
   })
 }
 
@@ -54,7 +58,11 @@ function seenIt(req, res) {
 function deleteShow(req, res) {
   Show.findByIdAndDelete(req.params.id)
   .then(show => {
-    res.redirect(`/shows/${show.showType}`)
+    if(show.showType === "top8"){
+      res.redirect(`/shows`)
+    } else {
+      res.redirect(`/shows/${show.showType}`)
+    }
   })
 }
 
