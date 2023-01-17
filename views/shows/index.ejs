@@ -1,11 +1,12 @@
 <%- include('../partials/html-head') %>
 <%- include('../partials/nav') %>
 
-<h1>Master Show List</h1>
+<h1>Community Show List</h1>
 
 <ul>
   <% shows.forEach(show => { %>
     <li><%= show.name %> </li>
+    <li><%= show.profileId %> </li>
     <li>
       <form action="/shows/<%= show._id %>?_method=DELETE" method="POST">
         <button>Delete</button>

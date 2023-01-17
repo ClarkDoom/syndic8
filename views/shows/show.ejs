@@ -7,8 +7,9 @@
 <br>
 <img width=10%" src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/<%= show.imageUrl %>" alt="">
 <br>
-<%= show.description %><br>
-
+<%= show.description %>
+<br>
+<br>
 
 
 <form 
@@ -16,6 +17,27 @@ id="add-review-form"
 action="/shows/<%= show._id %>/reviews"
 method="POST"
 >
+
+<!-- put form in table to make it look nicer -->
+  <!-- <table>
+    <thead>
+      <tr>
+        <th>Review Title</th>
+        <th>Review</th>
+        <th>Rating</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>asdfasdf</td>
+        <td>asdfasdf</td>
+        <td>asdfasdf</td>
+      </tr>
+
+    </tbody>
+  </table> -->
+
+
   <label for="review-title">Review Title:</label>
   <input placeholder="Review Title" type="text" name="reviewTitle" id="review-title"><br>
 
@@ -37,6 +59,19 @@ method="POST"
   </select>
   <br>
   <button type="submit">submit</button>
+
+  <!-- FANCING RATING - IMPLEMENT AFTER MVP  -->
+  <!-- <label class="rating-label">
+    <strong>Rating</strong>
+    <input
+      class="rating"
+      max="5"
+      oninput="this.style.setProperty('--value', this.value)"
+      step="0.5"
+      type="range"
+      value="1">
+  </label> -->
+
 
 </form>
 <br><br>
