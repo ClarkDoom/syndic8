@@ -66,10 +66,9 @@ Review Rating: <%= review.rating %>
           <td><%= comment.commentor %></td>
           <td><%= comment.commentText %></td>
           <td><%= comment.reaction %> </td>
-          <td>Edit</td>
           <td> 
             <form 
-              action="" 
+              action="/shows/<%= show._id %>/<%= review._id %>/<%= comment._id %>?_method=DELETE" 
               method="POST"
             >
               <button>Delete</button>

@@ -24,6 +24,7 @@ router.put('/:id/:reviewId', showCtrl.updateReview)
 
 router.delete('/:id', showCtrl.deleteShow)
 router.delete('/:id/:reviewId', showCtrl.deleteReview)
+router.delete('/:id/:reviewId/:commentId', showCtrl.deleteComment)
 
 export {
   router

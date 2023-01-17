@@ -143,13 +143,28 @@ function createComment(req, res) {
   Show.findById(req.params.id)
   .then((show) => {
     const review = show.reviews.id(req.params.reviewId);
-    console.log(review)
     review.comments.push(req.body);
     return show.save();
   })
   .then((show) => {
-    res.redirect(`/shows`)
-    // res.send({ show });
+    // how do I redirect back to the review?
+    res.redirect(`/shows/${show._id}/${req.params.reviewId}`)
+    
+  })
+  .catch(e => res.status(400).send(e));
+}
+
+function deleteComment(req, res) {
+  Show.findById(req.params.id)
+  .then((show) => {
+    const review = show.reviews.id(req.params.reviewId);
+    review.comments.remove(req.params.commentId);
+    show.save();
+  })
+  .then((show) => {
+    // how do I redirect back to the review?
+    res.redirect(`/shows/${req.params.id}/${req.params.reviewId}`)
+    
   })
   .catch(e => res.status(400).send(e));
 }
@@ -167,5 +182,6 @@ export {
   editReview,
   updateReview,
   deleteShow,
-  createComment
+  createComment,
+  deleteComment
 }
