@@ -7,6 +7,7 @@
 <body>
 <nav class="navbar bg-primary" data-bs-theme="dark">
   <a class="nav-link" href="/">S8</a>
+  <% if (user?.profile.avatar) { %>
   -
   <a class="nav-link" href="/shows">Community Shows</a>
   -
@@ -16,7 +17,6 @@
   -
   <a class="nav-link" href="/shows/seen-it">Seen It</a>
   -
-  <% if (user?.profile.avatar) { %>
     <a class="nav-link" href="/profile/<%= user.profile._id %>">Profile</a>
   <% } else { %>
 

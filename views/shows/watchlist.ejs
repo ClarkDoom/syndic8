@@ -5,7 +5,7 @@
 
 <ul>
   <% shows.forEach(show => { %>
-    <% if (show.showType === "watchlist") { %> 
+    <% if (show.showType === "watchlist" && show.profileId === user.profile._id) { %> 
       <h3><a href="/shows/<%= show._id %>"><%= show.name %></a></h3>
       <img width=10%" src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/<%= show.imageUrl %>" alt="">
       <br>
