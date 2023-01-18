@@ -18,7 +18,9 @@
   -
   <% if (user?.profile.avatar) { %>
     <a class="nav-link" href="/profile/<%= user.profile._id %>">Profile</a>
-  <% } %>
+  <% } else { %>
+
+  <% } %> 
 
 
   <% if (user) { %>
@@ -54,23 +56,27 @@
       alt="<%= user.profile.name %> avatar"
       />
     </div>
-    <% } %>
     
-  <h1>Syndic8</h1>
-  <h2>Keeping up with TV content made easy and social.<h2>
-  <br>
-  <h3>Enter a show title to search and add shows to your lists.</h3><br>
-
-<form action="/query" method="POST">
-
-  <label for="search-input"></label>
-  <input name="query" value="enter show name" type="text" id="search-input">
-  <input class="hidden" name="profileId" value="<%= user.profile._id %>" type="text" id="profile-id">
-
-  <button type="submit">Search</button>
-</form>
-
+    <h1>Syndic8</h1>
+    <h2>Keeping up with TV content made easy and social.<h2>
+      <br>
+      <h3>Enter a show title to search and add shows to your lists.</h3><br>
+      
+      <form action="/query" method="POST">
+        
+        <label for="search-input"></label>
+        <input name="query" value="enter show name" type="text" id="search-input">
+        <input class="hidden" name="profileId" value="<%= user.profile._id %>" type="text" id="profile-id">
+        
+        <button type="submit">Search</button>
+      </form>
+      
 </main>
 
+<% } else { %>
+  <h1>Welcome to Syndic8!</h1>
+  <h2>Keeping up with TV content made easy and social.<h2>
+  <h2>Please Log In To Get Started!</h1>
+<% } %> 
 
 <%- include('./partials/footer') %>
