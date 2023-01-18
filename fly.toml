@@ -1,12 +1,9 @@
-# fly.toml file generated for syndicate on 2023-01-18T12:03:48-07:00
+# fly.toml file generated for syndicate on 2023-01-18T13:22:13-07:00
 
 app = "syndicate"
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = []
-
-[build]
-  image = "flyio/hellofly:latest"
 
 [env]
 
