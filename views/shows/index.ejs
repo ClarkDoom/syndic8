@@ -6,12 +6,14 @@
 <ul>
   <% shows.forEach(show => { %>
     <li><%= show.name %> </li>
-    <li><%= show.profileId %> </li>
     <li>
-      <form action="/shows/<%= show._id %>?_method=DELETE" method="POST">
-        <button>Delete</button>
-      </form>
+      Added By: <a href="/profile/<%= show.profileId %>"><%= show.addedBy %></a>
+      <%= show.profileId %> 
     </li>
+    <li>
+      <%= show.showType %> 
+    </li>
+      <br><br>
     <% }) %>  
 </ul>
 

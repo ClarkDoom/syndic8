@@ -28,7 +28,8 @@ const showSchema = new Schema({
   description: String,
   imageUrl: String,
   reviews: [reviewSchema],
-  showType: String
+  showType: String,
+  addedBy: String
 }, {
   timestamps: true
 })
