@@ -1,13 +1,14 @@
 import { Router } from 'express'
 import * as profileCtrl from '../controllers/profiles.js'
+import { isLoggedIn } from '../middleware/middleware.js'
 
 const router = Router()
 
-router.get('/:profileId', profileCtrl.index)
-router.get('/:profileId/edit', profileCtrl.edit)
-router.post('/top8', profileCtrl.addTop8)
+router.get('/:profileId', isLoggedIn, profileCtrl.index)
+router.get('/:profileId/edit', isLoggedIn, profileCtrl.edit)
+router.post('/top8', isLoggedIn, profileCtrl.addTop8)
 
-router.patch('/:profileId/edit', profileCtrl.updateAboutMe)
+router.patch('/:profileId/edit', isLoggedIn, profileCtrl.updateAboutMe)
 
 
 export {

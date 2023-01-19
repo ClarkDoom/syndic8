@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import passport from 'passport'
+import { isLoggedIn } from '../middleware/middleware.js'
 
 const router = Router()
 

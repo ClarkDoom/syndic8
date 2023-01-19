@@ -1,33 +1,34 @@
 import { Router } from 'express'
 import * as showCtrl from '../controllers/shows.js'
+import { isLoggedIn } from '../middleware/middleware.js'
 
 const router = Router()
 
-router.get('/', showCtrl.index)
-router.get('/watchlist', showCtrl.watchlist)
-router.get('/currently-watching', showCtrl.currentlyWatching)
-router.get('/seen-it', showCtrl.seenIt)
-router.get('/:id', showCtrl.show)
+router.get('/', isLoggedIn, showCtrl.index)
+router.get('/watchlist', isLoggedIn, showCtrl.watchlist)
+router.get('/currently-watching', isLoggedIn, showCtrl.currentlyWatching)
+router.get('/seen-it', isLoggedIn, showCtrl.seenIt)
+router.get('/:id', isLoggedIn, showCtrl.show)
 
 
 
-router.get('/:id/:reviewId', showCtrl.showReview)
+router.get('/:id/:reviewId', isLoggedIn, showCtrl.showReview)
 
-router.get('/:id/:reviewId/edit', showCtrl.editReview)
+router.get('/:id/:reviewId/edit', isLoggedIn, showCtrl.editReview)
 
-router.post('/new', showCtrl.create)
+router.post('/new', isLoggedIn, showCtrl.create)
 
 
-router.post('/:id/reviews', showCtrl.createReview)
-router.post('/:id/:reviewId/add-comment', showCtrl.createComment)
+router.post('/:id/reviews', isLoggedIn, showCtrl.createReview)
+router.post('/:id/:reviewId/add-comment', isLoggedIn, showCtrl.createComment)
 
-router.put('/:id/:reviewId', showCtrl.updateReview)
+router.put('/:id/:reviewId', isLoggedIn, showCtrl.updateReview)
 
-router.patch('/:id/update-show-type', showCtrl.updateShowType)
+router.patch('/:id/update-show-type', isLoggedIn, showCtrl.updateShowType)
 
-router.delete('/:id', showCtrl.deleteShow)
-router.delete('/:id/:reviewId', showCtrl.deleteReview)
-router.delete('/:id/:reviewId/:commentId', showCtrl.deleteComment)
+router.delete('/:id', isLoggedIn, showCtrl.deleteShow)
+router.delete('/:id/:reviewId', isLoggedIn, showCtrl.deleteReview)
+router.delete('/:id/:reviewId/:commentId', isLoggedIn, showCtrl.deleteComment)
 
 export {
   router
