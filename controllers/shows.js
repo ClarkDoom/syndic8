@@ -161,11 +161,12 @@ function createComment(req, res) {
   Show.findById(req.params.id)
   .then((show) => {
     const review = show.reviews.id(req.params.reviewId);
+    // ask in engineering in the morning how to automatically set commentor as the person logged in
+    //req.body.commentor = req.user.profile._id
     review.comments.push(req.body);
     return show.save();
   })
   .then((show) => {
-    // how do I redirect back to the review?
     res.redirect(`/shows/${show._id}/${req.params.reviewId}`)
     
   })

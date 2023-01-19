@@ -16,7 +16,7 @@
   <ul>
     <% shows.forEach(show => { %>
       <% if (show.showType === "top8") { %> 
-        <h3><a href="/shows/<%= show._id %>"><%= show.name %></a></h3>
+        <h3><%= show.name %></h3>
         <img width=10%" src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/<%= show.imageUrl %>" alt="">
         <br>
         <%= show.description %>
@@ -31,7 +31,7 @@
 <ul>
   <% shows.forEach(show => { %>
     <% if (show.showType === "currently-watching") { %> 
-      <h3><a href="/shows/<%= show._id %>"><%= show.name %></a></h3>
+      <h3><%= show.name %></h3>
       <img width=10%" src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/<%= show.imageUrl %>" alt="">
       <br>
       <%= show.description %>
@@ -45,8 +45,8 @@
 
 <ul>
   <% shows.forEach(show => { %>
-    <% if (show.showType === "seen-it") { %> 
-      <h3><a href="/shows/<%= show._id %>"><%= show.name %></a></h3>
+    <% if (show.showType === "seen-it" && show.reviews.length ) { %> 
+      <h3><%= show.name %></h3>
       <img width=10%" src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/<%= show.imageUrl %>" alt=""><br>
       <% show.reviews.forEach(review => { %>
         Review Title: 
@@ -56,7 +56,8 @@
         <%= review.reviewContent %>
         <br>
         Rating: 
-        <%= review.rating %> 
+        <%= review.rating %>
+        <a href="/shows/<%= show._id %>/<%=review._id  %>">Go To Review</a> 
       <% }) %>
       <br>
       <br>

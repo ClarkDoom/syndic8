@@ -3,9 +3,12 @@
   <% } %>
 </head>
 <body>
-  <nav class="navbar bg-primary" data-bs-theme="dark">
+
+
+  
+  <nav>
     <a class="nav-link" href="/">S8</a>
-    -
+    
     <% if (user?.profile.avatar) { %>
     <form action="/query" method="POST">
 
@@ -17,14 +20,15 @@
     </form>
 
     <a class="nav-link" href="/shows">Community Shows</a>
-    -
+    
     <a class="nav-link" href="/shows/watchlist">Watchlist</a>
-    -
+    
     <a class="nav-link" href="/shows/currently-watching">Currently Watching</a>
-    -
+    
     <a class="nav-link" href="/shows/seen-it">Seen It</a>
-    -
-      <a class="nav-link" href="/profile/<%= user.profile._id %>">Profile</a>
+    
+    <a id="profile-link" class="nav-link" href="/profile/<%= user.profile._id %>">Profile</a>
+    
     <% } %>
 
     <% if (user) { %>
