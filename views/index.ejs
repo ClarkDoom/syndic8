@@ -5,46 +5,69 @@
 <% } %>
 </head>
 <body>
-<nav class="navbar bg-primary" data-bs-theme="dark">
-  <a class="nav-link" href="/">S8</a>
-  <% if (user?.profile.avatar) { %>
-  -
-  <a class="nav-link" href="/shows">Community Shows</a>
-  -
-  <a class="nav-link" href="/shows/watchlist">Watchlist</a>
-  -
-  <a class="nav-link" href="/shows/currently-watching">Currently Watching</a>
-  -
-  <a class="nav-link" href="/shows/seen-it">Seen It</a>
-  -
-    <a class="nav-link" href="/profile/<%= user.profile._id %>">Profile</a>
-  <% } else { %>
 
-  <% } %> 
+  
+  <nav class="navbar navbar-expand-sm bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">S8</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
+      <% if (user?.profile.avatar) { %>
 
-  <% if (user) { %>
-    <a href="/auth/logout" class="right">
-      <button type="submit">Logout</button>
-    </a>
-  <% } else { %>
-    <div 
-      id="g_id_onload"
-      data-client_id="<%= googleClientID %>"
-      data-login_uri="/auth/google"
-      data-auto_prompt="false"
-    ></div>
-    <div 
-      class="g_id_signin right"
-      data-type="standard"
-      data-size="large"
-      data-theme="outline"
-      data-text="sign_in_with"
-      data-shape="rectangular"
-      data-logo_alignment="left"
-    ></div>
-  <% } %>
-</nav>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="/shows">Community</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Lists
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/shows/watchlist">Watchlist</a></li>
+              <li><a class="dropdown-item" href="/shows/currently-watching">Currently Watching</a></li>
+              <li><a class="dropdown-item" href="/shows/seen-it">Seen It</a></li>
+            </ul>
+            <li class="nav-item">
+              <a class="nav-link" href="/profile/<%= user.profile._id %>">Profile</a>
+            </li>
+          </li>
+         
+        </ul>
+
+        <form action="/query" method="POST" class="d-flex" role="search">
+          <input class="form-control me-2" type="search" name="query" placeholder="Enter show name" aria-label="Search">
+          <input class="hidden" name="profileId" value="<%= user.profile._id %>" type="text" id="profile-id">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+ <% } %>
+        <% if (user) { %>
+          <a href="/auth/logout" class="right">
+            <button type="submit">Logout</button>
+          </a>
+        <% } else { %>
+          <div 
+            id="g_id_onload"
+            data-client_id="<%= googleClientID %>"
+            data-login_uri="/auth/google"
+            data-auto_prompt="false"
+          ></div>
+          <div 
+            class="g_id_signin right"
+            data-type="standard"
+            data-size="large"
+            data-theme="outline"
+            data-text="sign_in_with"
+            data-shape="rectangular"
+            data-logo_alignment="left"
+          ></div>
+        <% } %>
+      </div>
+    </div>
+  </nav>
+  
 
 <br>
 
