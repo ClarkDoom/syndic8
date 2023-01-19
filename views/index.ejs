@@ -1,5 +1,6 @@
 <%- include('./partials/html-head') %>
 
+
 <% if (!user) { %>
   <script defer src="https://accounts.google.com/gsi/client"></script>
 <% } %>
@@ -34,20 +35,21 @@
               <a class="nav-link" href="/profile/<%= user.profile._id %>">Profile</a>
             </li>
           </li>
-         
         </ul>
 
-        <form action="/query" method="POST" class="d-flex" role="search">
-          <input class="form-control me-2" type="search" name="query" placeholder="Enter show name" aria-label="Search">
-          <input class="hidden" name="profileId" value="<%= user.profile._id %>" type="text" id="profile-id">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
+        
  <% } %>
         <% if (user) { %>
-          <a href="/auth/logout" class="right">
-            <button type="submit">Logout</button>
-          </a>
-        <% } else { %>
+          <div class="container">
+            <div class="row">
+              <div class="col p-2">  
+                <a href="/auth/logout" class="right">
+                  <button type="submit">Logout</button>
+                </a>
+              </div>
+            </div>
+          </div>
+          <% } else { %>
           <div 
             id="g_id_onload"
             data-client_id="<%= googleClientID %>"
@@ -67,39 +69,43 @@
       </div>
     </div>
   </nav>
-  
 
-<br>
 
-<main>
+ 
   <% if (user?.profile.avatar) { %>
-    <div>
-      <img
-      src="<%= user.profile.avatar %>"
-      alt="<%= user.profile.name %> avatar"
-      />
+    <div class="container">
+      <div class="row">  
+        <div class="col text-center">
+          <div>
+            <img
+            src="<%= user.profile.avatar %>"
+            alt="<%= user.profile.name %> avatar"
+            />
+          </div>
+          <h1>Welcome to Syndicate.</h1>
+          <h2>Keeping up with TV content made easy and social.</h2>
+          <h5>Enter a show title to search and add shows to your lists.</h5>
+          <form action="/query" method="POST">
+            <label for="search-input"></label>
+            <input name="query" placeholder="enter show name" type="text" id="search-input">
+            <input class="hidden" name="profileId" value="<%= user.profile._id %>" type="text" id="profile-id">
+            <button type="submit">Search</button>
+          </form>
+        </div>
+      </div>
     </div>
-    
-    <h1>Syndic8</h1>
-    <h2>Keeping up with TV content made easy and social.<h2>
-      <br>
-      <h3>Enter a show title to search and add shows to your lists.</h3><br>
-      
-      <form action="/query" method="POST">
-        
-        <label for="search-input"></label>
-        <input name="query" value="enter show name" type="text" id="search-input">
-        <input class="hidden" name="profileId" value="<%= user.profile._id %>" type="text" id="profile-id">
-        
-        <button type="submit">Search</button>
-      </form>
-      
-</main>
 
-<% } else { %>
-  <h1>Welcome to Syndic8!</h1>
-  <h2>Keeping up with TV content made easy and social.<h2>
-  <h2>Please Log In To Get Started!</h1>
+  <% } else { %>
+  <div class="container">
+    <div class="row">
+      <div class="col text-center">
+        <h1>Welcome to Syndic8!</h1><br>
+        <h2>Keeping up with TV content made easy and social.</h2><br>
+        <h5>Please Log In To Get Started!</h5>
+      </div>
+    </div>
+  </div>
 <% } %> 
 
 <%- include('./partials/footer') %>
+

@@ -3,81 +3,73 @@
 
 <h1>Search Results</h1>
 
+<div class="container">
+  <div class="row">
+
 <% if (results) { %>
 
+
   <% results.forEach(result => { %>
-  
-    <a href="/query/<%= result.id %>"><%= result.name %>
-      <br>
-      <img width=10%" src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/<%= result.poster_path %>" alt="">
-    </a>
-    <br>
+    <div class="col">
+      <div class="card" style="width: 18rem;">
+        <img src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/<%= result.poster_path %>" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title"><a href="/query/<%= result.id %>"></a><%= result.name %></a></h5>
+          
+          <p class="card-text"><%= result.overview %></p>
 
-    <%= result.overview %>
-    <br>
+          <form id="new-form" action="/shows/new" method="POST">
+            <input class="hidden" value="<%= result.name %> " type="text" name="name">
+            <input class="hidden" value="<%= result.id %> " type="text" name="tmbdShowId">
+            <input class="hidden" value="<%= result.overview %> " type="text" name="description">
+            <input class="hidden" value="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/<%= result.poster_path %>" type="text" name="imageUrl">
+            <input class="hidden" value="watchlist" type="text" name="showType">
+            <input class="hidden" value="<%= user.profile._id %> " type="text" name="profileId">
+            <input class="hidden" value="<%= profileData._id %>" type="text" name="addedBy">
+            <button class="btn btn-primary" type="submit">Watchlist</button>
+          </form>
 
-    <form id="new-form" action="/shows/new" method="POST">
-      
-      <input class="hidden" value="<%= result.name %> " type="text" name="name">
-      <input class="hidden" value="<%= result.id %> " type="text" name="tmbdShowId">
-      <input class="hidden" value="<%= result.overview %> " type="text" name="description">
-      <input class="hidden" value="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/<%= result.poster_path %>" type="text" name="imageUrl">
-      <input class="hidden" value="watchlist" type="text" name="showType">
-      <input class="hidden" value="<%= user.profile._id %> " type="text" name="profileId">
-      <input class="hidden" value="<%= profileData._id %>" type="text" name="addedBy">
-      
+          <form id="new-form" action="/shows/new" method="POST">
+            <input class="hidden" value="<%= result.name %> " type="text" name="name">
+            <input class="hidden" value="<%= result.id %> " type="text" name="tmbdShowId">
+            <input class="hidden" value="<%= result.overview %> " type="text" name="description">
+            <input class="hidden" value="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/<%= result.poster_path %>" type="text" name="imageUrl">
+            <input class="hidden" value="currently-watching" type="text" name="showType">
+            <input class="hidden" value="<%= user.profile._id %> " type="text" name="profileId">
+            <input class="hidden" value="<%= profileData._id %>" type="text" name="addedBy">
+            <button class="btn btn-primary" type="submit">Currently Watching</button>
+          </form>
 
-      <button type="submit">WL</button>
-    </form>
+          <form id="new-form" action="/shows/new" method="POST">
+            <input class="hidden" value="<%= result.name %> " type="text" name="name">
+            <input class="hidden" value="<%= result.id %> " type="text" name="tmbdShowId">
+            <input class="hidden" value="<%= result.overview %> " type="text" name="description">
+            <input class="hidden" value="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/<%= result.poster_path %>" type="text" name="imageUrl">
+            <input class="hidden" value="seen-it" type="text" name="showType">
+            <input class="hidden" value="<%= user.profile._id %> " type="text" name="profileId">
+            <input class="hidden" value="<%= profileData._id %>" type="text" name="addedBy">
+            <button class="btn btn-primary" type="submit">Seen It</button>
+          </form>
 
-    <form id="new-form" action="/shows/new" method="POST">
-      
-      <input class="hidden" value="<%= result.name %> " type="text" name="name">
-      <input class="hidden" value="<%= result.id %> " type="text" name="tmbdShowId">
-      <!--  need to collect profile id -->
-      <input class="hidden" value="<%= result.overview %> " type="text" name="description">
-      <input class="hidden" value="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/<%= result.poster_path %>" type="text" name="imageUrl">
-      <input class="hidden" value="currently-watching" type="text" name="showType">
-      <input class="hidden" value="<%= user.profile._id %> " type="text" name="profileId">
-      <input class="hidden" value="<%= profileData._id %>" type="text" name="addedBy">
+          <form id="new-form" action="/shows/new" method="POST">  
+            <input class="hidden" value="<%= result.name %> " type="text" name="name">
+            <input class="hidden" value="<%= result.id %> " type="text" name="tmbdShowId">
+            <input class="hidden" value="<%= result.overview %> " type="text" name="description">
+            <input class="hidden" value="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/<%= result.poster_path %>" type="text" name="imageUrl">
+            <input class="hidden" value="top8" type="text" name="showType">
+            <input class="hidden" value="<%= user.profile._id %> " type="text" name="profileId">
+            <input class="hidden" value="<%= profileData._id %>" type="text" name="addedBy">
+            <button class="btn btn-primary" type="submit">Top 8</button>
+          </form>
 
-      <button type="submit">CW</button>
-    </form>
-
-    <form id="new-form" action="/shows/new" method="POST">
-      
-      <input class="hidden" value="<%= result.name %> " type="text" name="name">
-      <input class="hidden" value="<%= result.id %> " type="text" name="tmbdShowId">
-      <input class="hidden" value="<%= result.overview %> " type="text" name="description">
-      <input class="hidden" value="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/<%= result.poster_path %>" type="text" name="imageUrl">
-      <input class="hidden" value="seen-it" type="text" name="showType">
-      <input class="hidden" value="<%= user.profile._id %> " type="text" name="profileId">
-      <input class="hidden" value="<%= profileData._id %>" type="text" name="addedBy">
-
-      <button type="submit">SI</button>
-    </form>
-
-    <form id="new-form" action="/shows/new" method="POST">
-      
-      <input class="hidden" value="<%= result.name %> " type="text" name="name">
-      <input class="hidden" value="<%= result.id %> " type="text" name="tmbdShowId">
-      <!--  need to collect profile id -->
-      <input class="hidden" value="<%= result.overview %> " type="text" name="description">
-      <input class="hidden" value="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/<%= result.poster_path %>" type="text" name="imageUrl">
-      <input class="hidden" value="top8" type="text" name="showType">
-      <input class="hidden" value="<%= user.profile._id %> " type="text" name="profileId">
-      <input class="hidden" value="<%= profileData._id %>" type="text" name="addedBy">
-
-      <button type="submit">T8</button>
-    </form>
-    
-    
-    <br>
-    <br>
-
+        </div>
+      </div>
+    </div>
   <% }) %>
-
-<% } %>
+  
+  <% } %>
+</div>
+</div>
 
 
 

@@ -3,18 +3,23 @@
 
 <h1>Community Show List</h1>
 
+<div class="container">
+  <div class="row">
+    <% shows.forEach(show => { %>
 
-  <% shows.forEach(show => { %>
-    <%= show.name %>
-    <br>
-    <img width=10%" src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/<%= show.imageUrl %>" alt="">
-    <br>
-    Added By: <a href="/profile/<%= show.profileId %>"><%= show.addedBy.userName %></a> 
-    <br>
-    Added to: <%= show.showType %> 
-    <br>
-    <br>
+      <div class="col">
+        <div class="card" style="width: 18rem;">
+
+          <img src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/<%= show.imageUrl %>" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title"><%= show.name %></h5>
+            <p class="card-text">Added By: <a href="/profile/<%= show.profileId %>"><%= show.addedBy.userName %></a></p> 
+            <h6 class="card-text">Added to: <%= show.showType %></h6>
+          </div>
+        </div>
+      </div>
     <% }) %>  
-
+  </div>
+</div>
 
 <%- include('../partials/footer') %>
