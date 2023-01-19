@@ -19,7 +19,7 @@
 
             <img src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/<%= show.imageUrl %>" class="card-img-top" alt="...">
             <div class="card-body">
-              <h5 class="card-body"><%= show.name %></h5>
+              <h5 class="card-title"><%= show.name %></h5>
               <p class="card-text"><%= show.description %></p>
               <form action="/shows/<%= show._id %>/update-show-type?_method=PATCH" method="POST">
                 <input class="hidden" value="seen-it" type="text" name="showType">

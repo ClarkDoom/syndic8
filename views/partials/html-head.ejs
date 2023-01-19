@@ -7,8 +7,28 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@300;600&display=swap" rel="stylesheet">
+    
+    
     <style type="text/css">
-      body { background: #7d7d7d !important; } /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
+      body { 
+        font-family: 'Source Serif Pro', serif;
+        color: white;
+        background: rgb(17, 18, 21) !important; 
+        } /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
+        .card-text {
+          color: black
+        }
+        .card-title {
+          color: black;
+          font-weight: bold;
+        }
+        a {
+          font-weight: bold;
+          text-decoration: none;
+        }
     </style>
 
     <title><%= title %></title>
