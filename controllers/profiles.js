@@ -6,12 +6,15 @@ import { Show } from "../models/show.js"
 function index(req, res) {
   Show.find({})
   .then(shows => {
+    const profileShows = shows.filter(shows => {
+      return shows.addedBy.equals(req.params.profileId)
+    })
     Profile.findById(req.params.profileId)
     .then(profile => {
       res.render('profile/index', {
         title: "Profile",  
         profile,
-        shows 
+        shows: profileShows 
       })
     })
   })

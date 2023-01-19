@@ -6,15 +6,6 @@
 <a href="/profile/<%= user.profile._id %>/edit">Edit Profile</a>
 <br><br>
 
-<% if (user?.profile.avatar) { %>
-  <div>
-    <img
-    src="<%= user.profile.avatar %>"
-    alt="<%= user.profile.name %> avatar"
-    />
-  </div>
-  <% } %>
-
   <!-- placeholder - needs to pull username from profile of user logged in  -->
   <h3>@username: <%= profile.userName %> </h1>
   About Me:<br>
