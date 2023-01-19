@@ -81,6 +81,7 @@ function deleteShow(req, res) {
 
 function show(req,res) {
   Show.findById(req.params.id)
+  .populate("addedBy")
   .then(show => {
     res.render('shows/show', {
       title: "Show Details", 

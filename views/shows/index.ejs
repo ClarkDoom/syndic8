@@ -23,6 +23,19 @@
             </a>
             <p class="card-text">Added By: <a href="/profile/<%= show.profileId %>"><%= show.addedBy.userName %></a></p> 
             <h6 class="card-text">Added to: <%= show.showType %></h6>
+
+            <p>Reviews: 
+              <% show.reviews.forEach(review => { %>
+                <td>
+                  <a href="/shows/<%= show._id %>/<%= review._id %>">
+                    <%= review.reviewTitle %>
+                  </a>
+                </td>
+                <td><%= review.reviewContent %></td>
+                <td><%= review.rating %> </td>
+              <% }) %>
+            </p>
+            
           </div>
         </div>
       </div>

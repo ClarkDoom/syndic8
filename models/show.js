@@ -13,6 +13,7 @@ const commentSchema = new Schema({
 const reviewSchema = new Schema({
   rating: {type: Number, min: 1, max: 5, default: 5},
   tmbdShowId: String,
+  showTitle: String,
   reviewTitle: String,
   reviewContent: String,
   author: String,

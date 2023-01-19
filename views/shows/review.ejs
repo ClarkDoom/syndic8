@@ -11,10 +11,12 @@
 
 
 
-Author: <%= review.author %> 
+Show Name: <%= review.showTitle %> 
+<br>
+Reviewer: <%= review.author %> 
 <br>
 
-Title: <%= review.reviewTitle %> 
+Review Title: <%= review.reviewTitle %> 
 <br>
 
 Review Content: <%= review.reviewContent %> 
@@ -60,7 +62,6 @@ Review Rating: <%= review.rating %>
         <th>Commenter</th>
         <th>Comment Text</th>
         <th>Reaction</th>
-        <th>Delete</th>
       </tr>
     </thead>
     <tbody>
@@ -71,14 +72,18 @@ Review Rating: <%= review.rating %>
           <td><%= comment.commenter.userName %></td>
           <td><%= comment.commentText %></td>
           <td><%= comment.reaction %> </td>
-          <td> 
-            <form 
-              action="/shows/<%= show._id %>/<%= review._id %>/<%= comment._id %>?_method=DELETE" 
-              method="POST"
-            >
-              <button>Delete</button>
-            </form>
-          </td>
+          <% if(comment.commenter._id.equals(user.profile._id)) { %> 
+            <td> 
+              <form 
+                action="/shows/<%= show._id %>/<%= review._id %>/<%= comment._id %>?_method=DELETE" 
+                method="POST"
+              >
+                <button>Delete</button>
+              </form>
+            </td>
+          <% } else { %>
+            <td></td>
+          <% } %>  
         </tr>
       <% }) %>
     </tbody>

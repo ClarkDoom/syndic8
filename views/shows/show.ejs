@@ -14,6 +14,11 @@
       <%= show.description %>
     </div>
 
+    <% if (show.addedBy.equals(user.profile._id)) { %>
+     
+    
+    
+
     <div class="col text-center">
       <form 
       id="add-review-form"
@@ -47,10 +52,13 @@
                   <option value="5">5</option>
                 </select>
               </td>
+              <input class="hidden" value="<%= show.name %>" name="showTitle" type="text">
+              <input class="hidden" value="<%= show.addedBy.userName %>" name="author" type="text">
               <td><button type="submit">submit</button></td>
             </tr>
           </tbody>
-        </table>
+        </table>  
+      <% } %>
 
         <!-- FANCING RATING - IMPLEMENT AFTER MVP  -->
         <!-- <label class="rating-label">
@@ -76,9 +84,9 @@
               <th>Review Title</th>
               <th>Review</th>
               <th>Rating</th>
-              <th>Edit</th>
-              <th>Delete</th>
-              <th>Review ID</th>
+              <th></th>
+              <th></th>
+              
             </tr>
           </thead>
           <tbody>
@@ -89,15 +97,20 @@
                 <td><a href="/shows/<%= show._id %>/<%= review._id %>"><%= review.reviewTitle %></a></td>
                 <td><%= review.reviewContent %></td>
                 <td><%= review.rating %> </td>
-                <td><a href="/shows/<%= show._id %>/<%= review._id %>/edit">Edit</a></td>
-                <td> <form 
-                    action="/shows/<%= show._id %>/<%= review._id %>?_method=DELETE" 
-                    method="POST"
-                  >
-                    <button>Delete</button>
-                  </form>
-                </td>
-                <td><%= review.id %> </td>
+                <% if (show.addedBy.equals(user.profile._id)) { %>
+                  <td><a href="/shows/<%= show._id %>/<%= review._id %>/edit">Edit</a></td>
+                  <td> <form 
+                      action="/shows/<%= show._id %>/<%= review._id %>?_method=DELETE" 
+                      method="POST"
+                    >
+                      <button>Delete</button>
+                    </form>
+                  </td>
+                <% } else { %> 
+                  <td></td>
+                  <td></td>
+                <% } %> 
+                
               </tr>
             <% }) %>
           </tbody>
