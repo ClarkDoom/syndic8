@@ -24,18 +24,21 @@
             <p class="card-text">Added By: <a href="/profile/<%= show.profileId %>"><%= show.addedBy.userName %></a></p> 
             <h6 class="card-text">Added to: <%= show.showType %></h6>
 
-            <p>Reviews: 
+            <p class="card-text"><b>Reviews:</b> <br><br>
               <% show.reviews.forEach(review => { %>
                 <td>
+                  <b>Title:</b> 
                   <a href="/shows/<%= show._id %>/<%= review._id %>">
                     <%= review.reviewTitle %>
                   </a>
+                  <br>
                 </td>
-                <td><%= review.reviewContent %></td>
-                <td><%= review.rating %> </td>
+                <td><b>Review: </b><%= review.reviewContent %></td>
+                <br>
+                <td><b>Rating: </b><%= review.rating %> </td>
               <% }) %>
             </p>
-            
+
           </div>
         </div>
       </div>
