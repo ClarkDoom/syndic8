@@ -113,6 +113,7 @@ function showReview(req, res) {
   Show.findById(req.params.id)
   .populate({
     path: 'reviews',
+    model: 'Review',
     populate: {
       path: 'comments',
       model: 'Comment',

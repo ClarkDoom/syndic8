@@ -12,10 +12,7 @@
 
 <a href="/profile/<%= user.profile._id %>/edit">Edit Profile</a>
 <br><br>
-<img
-  src="<%= user.profile.avatar %>"
-  alt="<%= user.profile.name %> avatar"
-/>
+
 
   <!-- placeholder - needs to pull username from profile of user logged in  -->
   <h3>@username: <%= profile.userName %> </h1>
@@ -32,9 +29,11 @@
         <br>
         <%= show.description %>
         <br>
-        <form action="/shows/<%= show._id %>?_method=DELETE" method="POST">
-          <button>Remove</button>
-        </form>
+        <% if (show.addedBy.equals(user.profile._id)) { %>
+          <form action="/shows/<%= show._id %>?_method=DELETE" method="POST">
+            <button>Remove</button>
+          </form>
+        <% } %> 
         <br>
       <% } %> 
     <% }) %>  
@@ -72,7 +71,8 @@
         Rating: 
         <%= review.rating %>
         <br>
-        <a href="/shows/<%= show._id %>/<%=review._id  %>">Go To Review</a> 
+        <a href="/shows/<%= show._id %>/<%=review._id  %>">Go To Review</a>
+        <br> 
       <% }) %>
       <br>
       <br>

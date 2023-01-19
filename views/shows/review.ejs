@@ -23,6 +23,18 @@ Review Content: <%= review.reviewContent %>
 <br>
 
 Review Rating: <%= review.rating %> 
+<br>
+
+<% if (show.addedBy._id.equals(user.profile._id)) { %>
+  <form 
+    action="/shows/<%= show._id %>/<%= review._id %>?_method=DELETE" 
+    method="POST"
+  >
+    <button>Delete</button>
+  </form>
+<% } else { %>
+
+<% } %>  
 
 <h1>Leave A Comment</h1>
 
