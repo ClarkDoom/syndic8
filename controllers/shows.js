@@ -1,13 +1,16 @@
 // will need to import models at some point
 import axios from 'axios'
 import { Show } from '../models/show.js'
+import { Review } from '../models/show.js'
+import { Comment } from '../models/show.js'
+import { Profile } from '../models/profile.js'
 
 
 function create(req,res) {
   Show.create(req.body)
   .then(show => {
     if (show.showType === "top8") {
-      res.redirect(`/`)
+      res.redirect(`/profile/${req.user.profile._id}`)
     } else {
       res.redirect(`/shows/${req.body.showType}`)
     }
@@ -69,7 +72,7 @@ function deleteShow(req, res) {
   Show.findByIdAndDelete(req.params.id)
   .then(show => {
     if(show.showType === "top8"){
-      res.redirect(`/shows`)
+      res.redirect(`/profile/${req.user.profile._id}`)
     } else {
       res.redirect(`/shows/${show.showType}`)
     }
@@ -106,8 +109,18 @@ function createReview(req, res) {
 }
 
 function showReview(req, res) {
-  //need to pass comment data somehow here so that its available on the view to render ejs
   Show.findById(req.params.id)
+  .populate({
+    path: 'reviews',
+    populate: {
+      path: 'comments',
+      model: 'Comment',
+      populate: {
+        path: 'commenter',
+        model: 'Profile'
+      }
+    }
+  })
   .then(show => {
     const review = show.reviews.id(req.params.reviewId)
     res.render('shows/review', {
@@ -161,14 +174,12 @@ function createComment(req, res) {
   Show.findById(req.params.id)
   .then((show) => {
     const review = show.reviews.id(req.params.reviewId);
-    // ask in engineering in the morning how to automatically set commentor as the person logged in
-    //req.body.commentor = req.user.profile._id
+    req.body.commenter = req.user.profile._id
     review.comments.push(req.body);
     return show.save();
   })
   .then((show) => {
     res.redirect(`/shows/${show._id}/${req.params.reviewId}`)
-    
   })
   .catch(e => res.status(400).send(e));
 }

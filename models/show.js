@@ -3,7 +3,7 @@ import mongoose from "mongoose"
 const Schema = mongoose.Schema
 
 const commentSchema = new Schema({
-  commentor: {type: Schema.Types.ObjectId, ref: "Profile"},
+  commenter: {type: Schema.Types.ObjectId, ref: "Profile"},
   commentText: String,
   reaction: String
 },{
@@ -35,7 +35,11 @@ const showSchema = new Schema({
 })
 
 const Show = mongoose.model('Show', showSchema)
+const Review = mongoose.model('Review', reviewSchema)
+const Comment = mongoose.model('Comment', commentSchema)
 
 export {
   Show,
+  Review,
+  Comment
 }

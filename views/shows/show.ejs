@@ -2,123 +2,113 @@
 <%- include('../partials/nav') %>
 
 <div class="container">
-  <div class="row">
-    <div class="col text-center">
-      <h3>Leave a Review</h3>
+  <div class="row vstack">
+
+    <div class="col text-center justify-content-center">
+      <h3>Show Details</h3>
     </div>
+  
+    <div class="col text-center">
+      <%= show.name %><br>
+      <img width=10%" src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/<%= show.imageUrl %>" alt=""><br>
+      <%= show.description %>
+    </div>
+
+    <div class="col text-center">
+      <form 
+      id="add-review-form"
+      action="/shows/<%= show._id %>/reviews"
+      method="POST"
+      >
+        <table>
+          <thead>
+            <tr>
+              <th><label for="review-title">Review Title:</label></th>
+              <th><label for="review-content">Review:</label></th>
+              <th><label for="rating-select">Rating:</label></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input placeholder="Review Title" type="text" name="reviewTitle" id="review-title"></td>
+              <td><textarea placeholder="Enter Review Here" name="reviewContent" id="reviewContent" cols="30" rows="10"></textarea></td>
+              <td>
+                <select name="rating" id="rating-select">
+                  <option value="1">.5</option>
+                  <option value="1">1</option>
+                  <option value="1">1.5</option>
+                  <option value="2">2</option>
+                  <option value="2">2.5</option>
+                  <option value="3">3</option>
+                  <option value="3">3.5</option>
+                  <option value="4">4</option>
+                  <option value="4">4.5</option>
+                  <option value="5">5</option>
+                </select>
+              </td>
+              <td><button type="submit">submit</button></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- FANCING RATING - IMPLEMENT AFTER MVP  -->
+        <!-- <label class="rating-label">
+          <strong>Rating</strong>
+          <input
+            class="rating"
+            max="5"
+            oninput="this.style.setProperty('--value', this.value)"
+            step="0.5"
+            type="range"
+            value="1">
+        </label> -->
+
+      </form>
+    </div>
+
+
+    <div class="col text-center">
+      <% if (show.reviews.length) { %>
+        <table>
+          <thead>
+            <tr>
+              <th>Review Title</th>
+              <th>Review</th>
+              <th>Rating</th>
+              <th>Edit</th>
+              <th>Delete</th>
+              <th>Review ID</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% let total = 0 %> 
+            <% show.reviews.forEach(function(review) { %>
+              <% total += review.rating %>
+              <tr>
+                <td><a href="/shows/<%= show._id %>/<%= review._id %>"><%= review.reviewTitle %></a></td>
+                <td><%= review.reviewContent %></td>
+                <td><%= review.rating %> </td>
+                <td><a href="/shows/<%= show._id %>/<%= review._id %>/edit">Edit</a></td>
+                <td> <form 
+                    action="/shows/<%= show._id %>/<%= review._id %>?_method=DELETE" 
+                    method="POST"
+                  >
+                    <button>Delete</button>
+                  </form>
+                </td>
+                <td><%= review.id %> </td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      <% } else { %>
+        <h3>No Reviews Yet</h3>
+      <% } %>
+    </div>
+
   </div>
 </div>
-
-<%= show.name %>
-<br>
-<img width=10%" src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/<%= show.imageUrl %>" alt="">
-<br>
-<%= show.description %>
-<br>
-<br>
-
-
-<form 
-id="add-review-form"
-action="/shows/<%= show._id %>/reviews"
-method="POST"
->
-
-<!-- put form in table to make it look nicer -->
-  <!-- <table>
-    <thead>
-      <tr>
-        <th>Review Title</th>
-        <th>Review</th>
-        <th>Rating</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>asdfasdf</td>
-        <td>asdfasdf</td>
-        <td>asdfasdf</td>
-      </tr>
-
-    </tbody>
-  </table> -->
-
-
-  <label for="review-title">Review Title:</label>
-  <input placeholder="Review Title" type="text" name="reviewTitle" id="review-title"><br>
-
-  <label for="review-content">Review:</label>
-  <textarea placeholder="Enter Review Here" name="reviewContent" id="reviewContent" cols="30" rows="10"></textarea><br>
-
-  <label for="rating-select">Rating:</label>
-  <select name="rating" id="rating-select">
-    <option value="1">.5</option>
-    <option value="1">1</option>
-    <option value="1">1.5</option>
-    <option value="2">2</option>
-    <option value="2">2.5</option>
-    <option value="3">3</option>
-    <option value="3">3.5</option>
-    <option value="4">4</option>
-    <option value="4">4.5</option>
-    <option value="5">5</option>
-  </select>
-  <br>
-  <button type="submit">submit</button>
-
-  <!-- FANCING RATING - IMPLEMENT AFTER MVP  -->
-  <!-- <label class="rating-label">
-    <strong>Rating</strong>
-    <input
-      class="rating"
-      max="5"
-      oninput="this.style.setProperty('--value', this.value)"
-      step="0.5"
-      type="range"
-      value="1">
-  </label> -->
-
-
-</form>
-<br><br>
-
-<% if (show.reviews.length) { %>
-  <table>
-    <thead>
-      <tr>
-        <th>Review Title</th>
-        <th>Review</th>
-        <th>Rating</th>
-        <th>Edit</th>
-        <th>Delete</th>
-        <th>Review ID</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% let total = 0 %> 
-      <% show.reviews.forEach(function(review) { %>
-        <% total += review.rating %>
-        <tr>
-          <td><a href="/shows/<%= show._id %>/<%= review._id %>"><%= review.reviewTitle %></a></td>
-          <td><%= review.reviewContent %></td>
-          <td><%= review.rating %> </td>
-          <td><a href="/shows/<%= show._id %>/<%= review._id %>/edit">Edit</a></td>
-          <td> <form 
-              action="/shows/<%= show._id %>/<%= review._id %>?_method=DELETE" 
-              method="POST"
-            >
-              <button>Delete</button>
-            </form>
-          </td>
-          <td><%= review.id %> </td>
-        </tr>
-      <% }) %>
-    </tbody>
-  </table>
-<% } else { %>
-  <h3>No Reviews Yet</h3>
-<% } %>
-
 
 <!-- <label class="rating-label">
   <strong>Rating</strong>

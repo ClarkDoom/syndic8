@@ -12,7 +12,10 @@
 
 <a href="/profile/<%= user.profile._id %>/edit">Edit Profile</a>
 <br><br>
-
+<img
+  src="<%= user.profile.avatar %>"
+  alt="<%= user.profile.name %> avatar"
+/>
 
   <!-- placeholder - needs to pull username from profile of user logged in  -->
   <h3>@username: <%= profile.userName %> </h1>
@@ -20,7 +23,7 @@
   <p><%= profile.aboutMe %></p>
 
 
-  <h3>Top 8</h3>
+  <h3>Favorites</h3>
   <ul>
     <% shows.forEach(show => { %>
       <% if (show.showType === "top8") { %> 
@@ -29,6 +32,9 @@
         <br>
         <%= show.description %>
         <br>
+        <form action="/shows/<%= show._id %>?_method=DELETE" method="POST">
+          <button>Remove</button>
+        </form>
         <br>
       <% } %> 
     <% }) %>  

@@ -57,7 +57,7 @@ Review Rating: <%= review.rating %>
     <thead>
       <tr>
         <!-- update to match comment model  -->
-        <th>Commentor</th>
+        <th>Commenter</th>
         <th>Comment Text</th>
         <th>Reaction</th>
         <th>Delete</th>
@@ -68,7 +68,7 @@ Review Rating: <%= review.rating %>
       <% review.comments.forEach(function(comment) { %>
         <% total += comment.rating %>
         <tr>
-          <td><%= comment.commentor %></td>
+          <td><%= comment.commenter.userName %></td>
           <td><%= comment.commentText %></td>
           <td><%= comment.reaction %> </td>
           <td> 

@@ -1,5 +1,9 @@
+<div class="bg-warning.bg-gradient">
 <%- include('./partials/html-head') %>
 
+<style type="text/css">
+  body { background: #7d7d7d !important; } /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
+</style>
 
 <% if (!user) { %>
   <script defer src="https://accounts.google.com/gsi/client"></script>
@@ -82,16 +86,28 @@
             alt="<%= user.profile.name %> avatar"
             />
           </div>
-          <h1>Welcome to Syndicate.</h1>
-          <h2>Keeping up with TV content made easy and social.</h2>
-          <h5>See what other's are up to on the Community tab.</h5>
-          <h5>Enter a show title to search and add shows to your lists.</h5>
-          <form action="/query" method="POST">
-            <label for="search-input"></label>
-            <input name="query" placeholder="enter show name" type="text" id="search-input">
-            <input class="hidden" name="profileId" value="<%= user.profile._id %>" type="text" id="profile-id">
-            <button type="submit">Search</button>
-          </form>
+            <h1>Welcome to Syndicate.</h1>
+            <h2>Keeping up with TV content made easy and social.</h2>
+            <% if(user.profile.userName === ""){ %> 
+              <h5>If this is your first time using Syndicate, please enter a @username below:</h5>
+            <!-- username input -->
+              <form action="/profile/<%= user.profile._id %>/edit?_method=PATCH" method="POST">
+                <label for="username-input"></label>
+                <input name="userName" placeholder="enter @username" type="text" id="username-input">
+                <button type="submit">Submit</button>
+              </form>
+            <% } %> 
+            <!-- end -->
+            <h5>See what other's are up to on the Community tab.</h5>
+            <% if(user.profile.userName !== "") { %> 
+              <h5>Enter a show title to search and add shows to your lists.</h5>
+              <form action="/query" method="POST">
+                <label for="search-input"></label>
+                <input name="query" placeholder="enter show name" type="text" id="search-input">
+                <input class="hidden" name="profileId" value="<%= user.profile._id %>" type="text" id="profile-id">
+                <button type="submit">Search</button>
+              </form>
+            <% } %> 
         </div>
       </div>
     </div>
@@ -109,4 +125,5 @@
 <% } %> 
 
 <%- include('./partials/footer') %>
+</div>
 
