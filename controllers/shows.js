@@ -9,7 +9,7 @@ import { Profile } from '../models/profile.js'
 function create(req,res) {
   Show.create(req.body)
   .then(show => {
-    if (show.showType === "top8") {
+    if (show.showType === "favorite") {
       res.redirect(`/profile/${req.user.profile._id}`)
     } else {
       res.redirect(`/shows/${req.body.showType}`)
@@ -71,7 +71,7 @@ function seenIt(req, res) {
 function deleteShow(req, res) {
   Show.findByIdAndDelete(req.params.id)
   .then(show => {
-    if(show.showType === "top8"){
+    if(show.showType === "favorite"){
       res.redirect(`/profile/${req.user.profile._id}`)
     } else {
       res.redirect(`/shows/${show.showType}`)

@@ -41,13 +41,13 @@ function updateAboutMe(req, res) {
   })
 }
 
-function addTop8(req, res) {
+function addFavorite(req, res) {
   console.log("ALERT ", req.user)
 }
 
 export {
   index,
   edit,
-  addTop8,
+  addFavorite,
   updateAboutMe
 }
