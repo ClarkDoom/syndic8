@@ -20,7 +20,10 @@
       <div class="card" style="width: 18rem;">
         <img src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/<%= result.poster_path %>" class="card-img-top" alt="...">
         <div class="card-body">
-          <h5 class="card-title"><a href="/query/<%= result.id %>"></a><%= result.name %></a></h5>
+          <h5 class="card-title">
+            <a href="/query/<%= result.id %>"><%= result.name %>
+            </a>
+          </h5>
           
           <p class="card-text"><%= result.overview %></p>
 
