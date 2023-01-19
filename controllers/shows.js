@@ -16,6 +16,7 @@ function create(req,res) {
 
 function index(req, res) {
   Show.find({})
+  .populate("addedBy")
   .then(shows => {
     res.render('shows/index', {
       title: "Shows",

@@ -9,9 +9,9 @@
     <br>
     <img width=10%" src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/<%= show.imageUrl %>" alt="">
     <br>
-    Added By: <a href="/profile/<%= show.profileId %>"><%= show.addedBy %></a> 
+    Added By: <a href="/profile/<%= show.profileId %>"><%= show.addedBy.userName %></a> 
     <br>
-    <%= show.showType %> 
+    Added to: <%= show.showType %> 
     <br>
     <br>
     <% }) %>  
