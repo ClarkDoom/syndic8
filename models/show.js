@@ -29,7 +29,7 @@ const showSchema = new Schema({
   imageUrl: String,
   reviews: [reviewSchema],
   showType: String,
-  addedBy: String
+  addedBy: {type: Schema.Types.ObjectId, ref: "Profile"}
 }, {
   timestamps: true
 })

@@ -27,9 +27,12 @@ function index(req, res) {
 function watchlist(req, res) {
   Show.find({})
   .then(shows => {
+    const watchlistShows = shows.filter(show => {
+      return show.showType == "watchlist"
+    })
     res.render('shows/watchlist', {
       title: "Watchlist",
-      shows: shows
+      shows: watchlistShows
     })
   })
 }
@@ -37,9 +40,12 @@ function watchlist(req, res) {
 function currentlyWatching(req, res) {
   Show.find({})
   .then(shows => {
+    const currentlyWatchingShows = shows.filter(show => {
+      return show.showType == "currently-watching"
+    })
     res.render('shows/currentlyWatching', {
       title: "Currently Watching",
-      shows: shows
+      shows: currentlyWatchingShows
     })
   })
 }
@@ -47,9 +53,12 @@ function currentlyWatching(req, res) {
 function seenIt(req, res) {
   Show.find({})
   .then(shows => {
+    const seenItShows = shows.filter(show => {
+      return show.showType == "seen-it"
+    })
     res.render('shows/seenIt', {
       title: "Seen It",
-      shows: shows
+      shows: seenItShows
     })
   })
 }
