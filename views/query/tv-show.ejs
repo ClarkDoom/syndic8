@@ -18,12 +18,53 @@
   <br>
   <%= results.overview %>
   <br>
-  <!-- can replicate action buttons after mvp -->
-  <!-- <button>WL</button>
-  <button>CW</button>
-  <button>SI</button>
-  <button>T8</button> -->
-  <h3>Average Score: <%= results.vote_average %></h3>
+  <form id="new-form" action="/shows/new" method="POST">
+    <input class="hidden" value="<%= results.name %> " type="text" name="name">
+    <input class="hidden" value="<%= results.id %> " type="text" name="tmbdShowId">
+    <input class="hidden" value="<%= results.overview %> " type="text" name="description">
+    <input class="hidden" value="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/<%= results.poster_path %>" type="text" name="imageUrl">
+    <input class="hidden" value="watchlist" type="text" name="showType">
+    <input class="hidden" value="<%= user.profile._id %> " type="text" name="profileId">
+    <input class="hidden" value="<%= profileData._id %>" type="text" name="addedBy">
+    <button class="btn btn-primary" type="submit">Watchlist</button>
+  </form>
+
+  <form id="new-form" action="/shows/new" method="POST">
+    <input class="hidden" value="<%= results.name %> " type="text" name="name">
+    <input class="hidden" value="<%= results.id %> " type="text" name="tmbdShowId">
+    <input class="hidden" value="<%= results.overview %> " type="text" name="description">
+    <input class="hidden" value="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/<%= results.poster_path %>" type="text" name="imageUrl">
+    <input class="hidden" value="currently-watching" type="text" name="showType">
+    <input class="hidden" value="<%= user.profile._id %> " type="text" name="profileId">
+    <input class="hidden" value="<%= profileData._id %>" type="text" name="addedBy">
+    <button class="btn btn-primary" type="submit">Currently Watching</button>
+  </form>
+
+  <form id="new-form" action="/shows/new" method="POST">
+    <input class="hidden" value="<%= results.name %> " type="text" name="name">
+    <input class="hidden" value="<%= results.id %> " type="text" name="tmbdShowId">
+    <input class="hidden" value="<%= results.overview %> " type="text" name="description">
+    <input class="hidden" value="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/<%= results.poster_path %>" type="text" name="imageUrl">
+    <input class="hidden" value="seen-it" type="text" name="showType">
+    <input class="hidden" value="<%= user.profile._id %> " type="text" name="profileId">
+    <input class="hidden" value="<%= profileData._id %>" type="text" name="addedBy">
+    <button class="btn btn-primary" type="submit">Seen It</button>
+  </form>
+
+  <form id="new-form" action="/shows/new" method="POST">  
+    <input class="hidden" value="<%= results.name %> " type="text" name="name">
+    <input class="hidden" value="<%= results.id %> " type="text" name="tmbdShowId">
+    <input class="hidden" value="<%= results.overview %> " type="text" name="description">
+    <input class="hidden" value="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/<%= results.poster_path %>" type="text" name="imageUrl">
+    <input class="hidden" value="top8" type="text" name="showType">
+    <input class="hidden" value="<%= user.profile._id %> " type="text" name="profileId">
+    <input class="hidden" value="<%= profileData._id %>" type="text" name="addedBy">
+    <button class="btn btn-primary" type="submit">Favorite</button>
+  </form>
+
+  <h3>Average Review Score: <%= results.vote_average %></h3>
+
+  <h5>Click on a season below to get a list of epiosdes</h5>
 
   <% results.seasons.forEach(season => { %>
     <a href="/query/<%= results.id %>/<%= season.season_number %>">
