@@ -21,7 +21,7 @@ Syndicate is defined as a group of individuals or organizations combined to prom
 ## Features
 
 - Using TMBD's open API, you are able to search for basically any show ever made. 
-- Once you've found a show you're looking for, you can add to a set of custom lists - "watchlist", "currently watching", and "seen it". These lists will be available at all times in your nav bar. 
+- Once you've found a show you're looking for, you can add to a set of lists - "watchlist", "currently watching", and "seen it". These lists will be available at all times in your nav bar. 
 - You can also add shows to your "favorites" so that when others visit your profile, they can get a sense of your interests. 
 - Every user has a public profile that displays shows you've added to your favorites, what you're currently watching, and any reviews you've written. 
  - Any logged-in user can also leave comments on reviews if you want to share your thoughts or have a conversation.
