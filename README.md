@@ -33,6 +33,7 @@ Syndicate is defined as a group of individuals or organizations combined to prom
  - Node.js
  - Express.js
  - Fly.io
+ - Google Auth
 
 ## Future Enhancements
 
