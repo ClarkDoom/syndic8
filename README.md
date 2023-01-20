@@ -1,5 +1,7 @@
 ## Welcome to Syndicate!
 
+<img src="https://farm66.staticflickr.com/65535/52638706376_3c8e5a2c43_m.jpg">
+
 <br>
 
 ### <i>Keeping up with TV content made easy and social.</i>
