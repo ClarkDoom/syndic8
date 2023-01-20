@@ -1,6 +1,7 @@
 ## Welcome to Syndicate!
 
-<img src="https://farm66.staticflickr.com/65535/52638706376_3c8e5a2c43_m.jpg">
+<img width="100%" src="https://live.staticflickr.com/65535/52638706376_3c8e5a2c43_b.jpg">
+
 
 <br>
 
