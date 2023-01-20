@@ -11,79 +11,66 @@
 
 <div class="container">
   <div class="row">
+    <% if (results) { %>
+      <% results.forEach(result => { %>
+        <div class="col">
+          <div class="card" style="width: 18rem;">
+            <img src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/<%= result.poster_path %>" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">
+                <a href="/query/<%= result.id %>"><%= result.name %>
+                </a>
+              </h5>
+              <p class="card-text"><%= result.overview %></p>
+              <form id="new-form" action="/shows/new" method="POST">
+                <input class="hidden" value="<%= result.name %> " type="text" name="name">
+                <input class="hidden" value="<%= result.id %> " type="text" name="tmbdShowId">
+                <input class="hidden" value="<%= result.overview %> " type="text" name="description">
+                <input class="hidden" value="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/<%= result.poster_path %>" type="text" name="imageUrl">
+                <input class="hidden" value="watchlist" type="text" name="showType">
+                <input class="hidden" value="<%= user.profile._id %> " type="text" name="profileId">
+                <input class="hidden" value="<%= profileData._id %>" type="text" name="addedBy">
+                <button id="action-button" type="submit" class="col-12">Watchlist</button>
+              </form>
 
-<% if (results) { %>
+              <form id="new-form" action="/shows/new" method="POST">
+                <input class="hidden" value="<%= result.name %> " type="text" name="name">
+                <input class="hidden" value="<%= result.id %> " type="text" name="tmbdShowId">
+                <input class="hidden" value="<%= result.overview %> " type="text" name="description">
+                <input class="hidden" value="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/<%= result.poster_path %>" type="text" name="imageUrl">
+                <input class="hidden" value="currently-watching" type="text" name="showType">
+                <input class="hidden" value="<%= user.profile._id %> " type="text" name="profileId">
+                <input class="hidden" value="<%= profileData._id %>" type="text" name="addedBy">
+                <button id="action-button" type="submit" class="col-12">Currently Watching</button>
+              </form>
 
+              <form id="new-form" action="/shows/new" method="POST">
+                <input class="hidden" value="<%= result.name %> " type="text" name="name">
+                <input class="hidden" value="<%= result.id %> " type="text" name="tmbdShowId">
+                <input class="hidden" value="<%= result.overview %> " type="text" name="description">
+                <input class="hidden" value="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/<%= result.poster_path %>" type="text" name="imageUrl">
+                <input class="hidden" value="seen-it" type="text" name="showType">
+                <input class="hidden" value="<%= user.profile._id %> " type="text" name="profileId">
+                <input class="hidden" value="<%= profileData._id %>" type="text" name="addedBy">
+                <button id="action-button" type="submit" class="col-12">Seen It</button>
+              </form>
 
-  <% results.forEach(result => { %>
-    <div class="col">
-      <div class="card" style="width: 18rem;">
-        <img src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/<%= result.poster_path %>" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">
-            <a href="/query/<%= result.id %>"><%= result.name %>
-            </a>
-          </h5>
-          
-          <p class="card-text"><%= result.overview %></p>
-
-          <form id="new-form" action="/shows/new" method="POST">
-            <input class="hidden" value="<%= result.name %> " type="text" name="name">
-            <input class="hidden" value="<%= result.id %> " type="text" name="tmbdShowId">
-            <input class="hidden" value="<%= result.overview %> " type="text" name="description">
-            <input class="hidden" value="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/<%= result.poster_path %>" type="text" name="imageUrl">
-            <input class="hidden" value="watchlist" type="text" name="showType">
-            <input class="hidden" value="<%= user.profile._id %> " type="text" name="profileId">
-            <input class="hidden" value="<%= profileData._id %>" type="text" name="addedBy">
-            <button id="action-button" type="submit" class="col-12">Watchlist</button>
-          </form>
-
-          <form id="new-form" action="/shows/new" method="POST">
-            <input class="hidden" value="<%= result.name %> " type="text" name="name">
-            <input class="hidden" value="<%= result.id %> " type="text" name="tmbdShowId">
-            <input class="hidden" value="<%= result.overview %> " type="text" name="description">
-            <input class="hidden" value="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/<%= result.poster_path %>" type="text" name="imageUrl">
-            <input class="hidden" value="currently-watching" type="text" name="showType">
-            <input class="hidden" value="<%= user.profile._id %> " type="text" name="profileId">
-            <input class="hidden" value="<%= profileData._id %>" type="text" name="addedBy">
-            <button id="action-button" type="submit" class="col-12">Currently Watching</button>
-          </form>
-
-          <form id="new-form" action="/shows/new" method="POST">
-            <input class="hidden" value="<%= result.name %> " type="text" name="name">
-            <input class="hidden" value="<%= result.id %> " type="text" name="tmbdShowId">
-            <input class="hidden" value="<%= result.overview %> " type="text" name="description">
-            <input class="hidden" value="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/<%= result.poster_path %>" type="text" name="imageUrl">
-            <input class="hidden" value="seen-it" type="text" name="showType">
-            <input class="hidden" value="<%= user.profile._id %> " type="text" name="profileId">
-            <input class="hidden" value="<%= profileData._id %>" type="text" name="addedBy">
-            <button id="action-button" type="submit" class="col-12">Seen It</button>
-          </form>
-
-          <form id="new-form" action="/shows/new" method="POST">  
-            <input class="hidden" value="<%= result.name %> " type="text" name="name">
-            <input class="hidden" value="<%= result.id %> " type="text" name="tmbdShowId">
-            <input class="hidden" value="<%= result.overview %> " type="text" name="description">
-            <input class="hidden" value="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/<%= result.poster_path %>" type="text" name="imageUrl">
-            <input class="hidden" value="favorite" type="text" name="showType">
-            <input class="hidden" value="<%= user.profile._id %> " type="text" name="profileId">
-            <input class="hidden" value="<%= profileData._id %>" type="text" name="addedBy">
-            <button id="action-button" type="submit" class="col-12">Favorite</button>
-          </form>
-
+              <form id="new-form" action="/shows/new" method="POST">  
+                <input class="hidden" value="<%= result.name %> " type="text" name="name">
+                <input class="hidden" value="<%= result.id %> " type="text" name="tmbdShowId">
+                <input class="hidden" value="<%= result.overview %> " type="text" name="description">
+                <input class="hidden" value="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/<%= result.poster_path %>" type="text" name="imageUrl">
+                <input class="hidden" value="favorite" type="text" name="showType">
+                <input class="hidden" value="<%= user.profile._id %> " type="text" name="profileId">
+                <input class="hidden" value="<%= profileData._id %>" type="text" name="addedBy">
+                <button id="action-button" type="submit" class="col-12">Favorite</button>
+              </form>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  <% }) %>
-  
-  <% } %>
+      <% }) %>
+    <% } %>
+  </div>
 </div>
-</div>
-
-
-
-
-
-
 
 <%- include('../partials/footer') %>

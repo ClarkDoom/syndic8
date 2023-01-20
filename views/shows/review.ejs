@@ -9,7 +9,6 @@
   </div>
 </div>
 
-
 <div class="container">
   <div class="row">
     <div class="col">
@@ -29,10 +28,6 @@
     </div>
   </div>
 </div>
-
-
-
-
 
 <div class="container">
   <div class="row">
@@ -79,9 +74,7 @@
 
 <div class="container">
   <div class="row justify-content-center">
-    
-      <% if (review.comments.length) { %>   
-        
+      <% if (review.comments.length) { %>
         <% review.comments.forEach(function(comment) { %>
           <div class="col-3 text-center" id="comment">
             <h5><b><%= comment.commenter.userName %></b></h5>
@@ -96,12 +89,10 @@
               </form>
             <% } %>
           </div>
-        <% }) %>
-        
+        <% }) %> 
       <% } else { %>
         <h3>No Comments Yet</h3>
       <% } %>
-    
   </div>
 </div>
 

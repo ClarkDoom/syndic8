@@ -1,11 +1,12 @@
-<div class="bg-warning.bg-gradient">
+
 <%- include('./partials/html-head') %>
 
+<!-- google font resources  -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@300;600&display=swap" rel="stylesheet">
 
-
+<!-- bootstrap overrides -->
 <style type="text/css">
   body { 
     font-family: 'Source Serif Pro', serif;
@@ -27,55 +28,50 @@
 </head>
 <body>
 
-  
   <nav class="navbar navbar-expand-sm bg-body-tertiary">
     <div class="container-fluid">
       <a class="navbar-brand" href="/">S8</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-
       <% if (user?.profile.avatar) { %>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link" href="/shows">Community</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Lists
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="/shows/watchlist">Watchlist</a></li>
-              <li><a class="dropdown-item" href="/shows/currently-watching">Currently Watching</a></li>
-              <li><a class="dropdown-item" href="/shows/seen-it">Seen It</a></li>
-            </ul>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link" href="/profile/<%= user.profile._id %>">Profile</a>
+              <a class="nav-link" href="/shows">Community</a>
             </li>
-          </li>
-        </ul>
-
-        
- <% } %>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Lists
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/shows/watchlist">Watchlist</a></li>
+                <li><a class="dropdown-item" href="/shows/currently-watching">Currently Watching</a></li>
+                <li><a class="dropdown-item" href="/shows/seen-it">Seen It</a></li>
+              </ul>
+              <li class="nav-item">
+                <a class="nav-link" href="/profile/<%= user.profile._id %>">Profile</a>
+              </li>
+            </li>
+          </ul>
+        <% } %>
         <% if (user) { %>
           <div class="container">
             <div class="row">
               <div class="col p-2">  
                 <a href="/auth/logout" class="right">
-                  <button type="submit">Logout</button>
+                  <button id="logout-button" type="submit">Logout</button>
                 </a>
               </div>
             </div>
           </div>
-          <% } else { %>
+        <% } else { %>
           <div 
             id="g_id_onload"
             data-client_id="<%= googleClientID %>"
             data-login_uri="/auth/google"
-            data-auto_prompt="false"
-          ></div>
+            data-auto_prompt="false">
+          </div>
           <div 
             class="g_id_signin right"
             data-type="standard"
@@ -83,15 +79,13 @@
             data-theme="outline"
             data-text="sign_in_with"
             data-shape="rectangular"
-            data-logo_alignment="left"
-          ></div>
+            data-logo_alignment="left">
+          </div>
         <% } %>
       </div>
     </div>
   </nav>
 
-
- 
   <% if (user?.profile.avatar) { %>
     <div class="container">
       <div class="row">  
@@ -102,52 +96,48 @@
             alt="<%= user.profile.name %> avatar"
             />
           </div>
-            <h1 id="landing-page"><b>Welcome to Syndicate.<b></h1>
-            <h2 id="landing-page">Keeping up with TV content made easy and social.</h2>
-            
-            
-            <% if(!profile.userName){ %> 
-
-              <h5 id="landing-page">If this is your first time using Syndicate, please enter a @username below:</h5>
-            <!-- username input -->
-              <form action="/profile/<%= user.profile._id %>/edit?_method=PATCH" method="POST">
-                <label for="username-input"></label>
-                <input name="userName" placeholder="enter username" type="text" id="username-input">
-                <input name="location" value="homePage" class="hidden" type="text">
-                <button type="submit">Submit</button>
-              </form>
-            <% } %> 
-            <!-- end -->
-            <% if(profile.userName){ %> 
-              <h5 id="landing-page">See what others are up to on the Community tab.</h5>
-           
-              <h5 id="landing-page">Enter a show title to search and add shows to your lists.</h5>
-              <h5 id="landing-page">Mark a show as "Seen It" to leave a review.</h5>
-
-                <form id="landing-page" action="/query" method="POST">
-                  <label for="search-input"></label>
-                  <input name="query" placeholder="enter show name" type="text" id="search-input">
-                  <input class="hidden" name="profileId" value="<%= user.profile._id %>" type="text" id="profile-id">
-                  <button id="inline-button" type="submit">Search</button>
-                </form>
-            <% } %> 
-          
+          <h1 id="landing-page"><b>Welcome to Syndicate.<b></h1>
+          <h2 id="landing-page">Keeping up with TV content made easy and social.</h2>
+          <% if(!profile.userName){ %> 
+            <h5 id="landing-page">
+              If this is your first time using Syndicate, please enter a @username below:
+            </h5>
+            <form action="/profile/<%= user.profile._id %>/edit?_method=PATCH" method="POST">
+              <label for="username-input"></label>
+              <input name="userName" placeholder="enter username" type="text" id="username-input">
+              <input name="location" value="homePage" class="hidden" type="text">
+              <button type="submit">Submit</button>
+            </form>
+          <% } %> 
+          <% if(profile.userName){ %> 
+            <h5 id="landing-page">See what others are up to on the Community tab.</h5>
+            <h5 id="landing-page">
+              Enter a show title to search and add shows to your lists.
+            </h5>
+            <h5 id="landing-page">Mark a show as "Seen It" to leave a review.</h5>
+            <form id="landing-page" action="/query" method="POST">
+              <label for="search-input"></label>
+              <input name="query" placeholder="enter show name" type="text" id="search-input">
+              <input class="hidden" name="profileId" value="<%= user.profile._id %>" type="text" id="profile-id">
+              <button id="inline-button" type="submit">Search</button>
+            </form>
+          <% } %> 
         </div>
       </div>
     </div>
 
   <% } else { %>
-  <div class="container">
-    <div class="row">
-      <div class="col text-center">
-        <h1 id="landing-page"><b>Welcome to Syndic8!</b></h1><br>
-        <h2 id="landing-page">Keeping up with TV content made easy and social.</h2><br>
-        <h5 id="landing-page">Please Log In To Get Started!</h5>
+    <div class="container">
+      <div class="row">
+        <div class="col text-center">
+          <h1 id="landing-page"><b>Welcome to Syndic8!</b></h1><br>
+          <h2 id="landing-page">Keeping up with TV content made easy and social.</h2><br>
+          <h5 id="landing-page">Please Log In To Get Started!</h5>
+        </div>
       </div>
     </div>
-  </div>
-<% } %> 
+  <% } %> 
+
 
 <%- include('./partials/footer') %>
-</div>
 

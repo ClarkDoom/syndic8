@@ -18,12 +18,9 @@
       action="/shows/<%= show._id %>/<%= review._id %>?_method=PUT"
       method="POST"
       >
-
         <input id="comment-input-background" value="<%= review.reviewTitle %>" type="text" name="reviewTitle""><br>
         <textarea id="comment-input-background" name="reviewContent" id="" cols="30" rows="10"><%= review.reviewContent %></textarea>
         <br>
-    
-
         <label for="rating-select">Rating:</label>
         <select id="comment-input-background" name="rating" id="rating-select">
           <option value="1">.5</option>

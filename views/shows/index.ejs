@@ -12,10 +12,8 @@
 <div class="container">
   <div class="row">
     <% shows.forEach(show => { %>
-
       <div id="cards" class="col">
         <div class="card" style="width: 12rem;">
-
           <img src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/<%= show.imageUrl %>" class="card-img-top" alt="...">
           <div class="card-body">
             <a href="/query/<%= show.tmbdShowId %>">
@@ -23,20 +21,13 @@
             </a>
             <p class="card-text">Added By: <a href="/profile/<%= show.profileId %>"><%= show.addedBy.userName %></a></p> 
             <h6 class="card-text">Added To: <%= show.showType %></h6>
-
             <% if (show.reviews.length > 0) { %>
-                <% show.reviews.forEach(review => { %>
-                  <td>
-                    <a href="/shows/<%= show._id %>/<%= review._id %>">
-                      Link to Review(s)
-                    </a>
-                  </td>
-                <% }) %>
-              </p>             
+              <% show.reviews.forEach(review => { %>
+                <a href="/shows/<%= show._id %>/<%= review._id %>">
+                  Link to Review(s)
+                </a>
+              <% }) %>             
             <% } %>
-            
-
-
           </div>
         </div>
       </div>

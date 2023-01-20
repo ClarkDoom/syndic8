@@ -8,22 +8,23 @@
     </div>
   </div>
 </div>
-<% results.episodes.forEach(episode => { %>
-  
-  <%= episode.episode_number %>
-  <br>
-  <img width=10%" src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/<%= episode.still_path %>" alt="">
-  <br>
-  Episode Title: <%= episode.name %>
-  <br>
-  Original Air Date: <%= episode.air_date %>
-  <br>
-  Description: <%= episode.overview %>
-  <br>
-  
-  
-  <br>
-  <br>
-<% }) %>
+
+<div class="container">
+  <div class="row">
+    <% results.episodes.forEach(episode => { %>
+      <br>
+      <div class="col" >
+        <div id="episode-list">
+          <%= episode.episode_number %>
+          <br>
+          <img width=10%" src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/<%= episode.still_path %>" alt=""> 
+          <h5>Episode Title: <%= episode.name %><h5>
+          <p>Original Air Date: <%= episode.air_date %></p>
+          <p>Description: <%= episode.overview %><p>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+</div> 
 
 <%- include('../partials/footer') %>

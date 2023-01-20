@@ -9,115 +9,53 @@
   </div>
 </div>
   
-    <div class="container">
-      <div class="row">
-        <div class="col text-center">
-          <h5><%= show.name %></h5>
-          <img width=10%" src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/<%= show.imageUrl %>" alt=""><br>
-          <p><%= show.description %></p>
-        </div>
-      </div>
+<div class="container">
+  <div class="row">
+    <div class="col text-center">
+      <h5><%= show.name %></h5>
+      <img width=10%" src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/<%= show.imageUrl %>" alt=""><br>
+      <p><%= show.description %></p>
     </div>
+  </div>
+</div>
 
 
-    <% if (show.addedBy.equals(user.profile._id)) { %>
-
-      <div class="container">
-        <div class="row">
-          <div class="col text-center">
-
-            <form 
-            id="add-review-form"
-            action="/shows/<%= show._id %>/reviews"
-            method="POST"
-            >
-              <input id="comment-input-background" placeholder="Review Title" type="text" name="reviewTitle" id="review-title">
-              <br>
-              <textarea id="comment-input-background" placeholder="Enter Review Here" name="reviewContent" id="reviewContent" cols="30" rows="10"></textarea>
-              <br>
-              <select id="comment-input-background" name="rating" id="rating-select">
-                <option value="1">.5</option>
-                <option value="1">1</option>
-                <option value="1">1.5</option>
-                <option value="2">2</option>
-                <option value="2">2.5</option>
-                <option value="3">3</option>
-                <option value="3">3.5</option>
-                <option value="4">4</option>
-                <option value="4">4.5</option>
-                <option value="5">5</option>
-              </select>
-              <br>
-              <input class="hidden" value="<%= show.name %>" name="showTitle" type="text">
-              <input class="hidden" value="<%= show.addedBy.userName %>" name="author" type="text">
-              
-              <button id="inline-button" type="submit">submit</button>
-                  
-                
-                
-            </form>
-          </div>
-        </div>    
-      </div>
-    <% } %>
-
-        <!-- FANCING RATING - IMPLEMENT AFTER MVP  -->
-        <!-- <label class="rating-label">
-          <strong>Rating</strong>
-          <input
-            class="rating"
-            max="5"
-            oninput="this.style.setProperty('--value', this.value)"
-            step="0.5"
-            type="range"
-            value="1">
-        </label> -->
-
-  
+<% if (show.addedBy.equals(user.profile._id)) { %>
   <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-3 text-center" id="comment">
-
-
-        <% if (show.reviews.length) { %>
-
-            
-              
-              <% show.reviews.forEach(function(review) { %>
-               
-                
-                  <h5><a href="/shows/<%= show._id %>/<%= review._id %>"><%= review.reviewTitle %></a></h5>
-                  
-                  <p><%= review.reviewContent %></p>
-                  <p>Rating: <%= review.rating %></p>
-                  <% if (show.addedBy.equals(user.profile._id)) { %>
-                    <form 
-                      action="/shows/<%= show._id %>/<%= review._id %>/edit" 
-                      method="GET"
-                    >
-                      <button id="inline-button" >Edit</button>
-                    </form>
-                    <form 
-                      action="/shows/<%= show._id %>/<%= review._id %>?_method=DELETE" 
-                      method="POST"
-                    >
-                      <button id="inline-button" >Delete</button>
-                    </form>
-                  <% } %> 
-                
-                  
-                  
-              
-              <% }) %>
-            
-          
-        <% } else { %>
-          <h3>No Reviews Yet</h3>
-        <% } %>
+    <div class="row">
+      <div class="col text-center">
+        <form 
+        id="add-review-form"
+        action="/shows/<%= show._id %>/reviews"
+        method="POST"
+        >
+          <input id="comment-input-background" placeholder="Review Title" type="text" name="reviewTitle" id="review-title">
+          <br>
+          <textarea id="comment-input-background" placeholder="Enter Review Here" name="reviewContent" id="reviewContent" cols="30" rows="10"></textarea>
+          <br>
+          <select id="comment-input-background" name="rating" id="rating-select">
+            <option value="1">.5</option>
+            <option value="1">1</option>
+            <option value="1">1.5</option>
+            <option value="2">2</option>
+            <option value="2">2.5</option>
+            <option value="3">3</option>
+            <option value="3">3.5</option>
+            <option value="4">4</option>
+            <option value="4">4.5</option>
+            <option value="5">5</option>
+          </select>
+          <br>
+          <input class="hidden" value="<%= show.name %>" name="showTitle" type="text">
+          <input class="hidden" value="<%= show.addedBy.userName %>" name="author" type="text">
+          <button id="inline-button" type="submit">submit</button>
+        </form>
       </div>
     </div>    
   </div>
+<% } %>
 
+<!-- FANCING RATING STARS - IMPLEMENT AFTER MVP  -->
 <!-- <label class="rating-label">
   <strong>Rating</strong>
   <input
@@ -127,7 +65,36 @@
     step="0.5"
     type="range"
     value="1">
-</label>
-<br> -->
+</label> -->
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-3 text-center" id="comment">
+      <% if (show.reviews.length) { %>
+        <% show.reviews.forEach(function(review) { %>
+          <h5><a href="/shows/<%= show._id %>/<%= review._id %>"><%= review.reviewTitle %></a></h5>
+          <p><%= review.reviewContent %></p>
+          <p>Rating: <%= review.rating %></p>
+          <% if (show.addedBy.equals(user.profile._id)) { %>
+            <form 
+              action="/shows/<%= show._id %>/<%= review._id %>/edit" 
+              method="GET"
+            >
+              <button id="inline-button" >Edit</button>
+            </form>
+            <form 
+              action="/shows/<%= show._id %>/<%= review._id %>?_method=DELETE" 
+              method="POST"
+            >
+              <button id="inline-button" >Delete</button>
+            </form>
+          <% } %> 
+        <% }) %>
+      <% } else { %>
+        <h3>No Reviews Yet</h3>
+      <% } %>
+    </div>
+  </div>    
+</div>
 
 <%- include('../partials/footer') %>

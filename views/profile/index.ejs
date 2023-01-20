@@ -43,7 +43,7 @@
                 <a href="/query/<%= show.tmbdShowId %>">
                   <%= show.name %>
                 </a>
-              </h3>
+              </h5>
               <% if (show.addedBy.equals(user.profile._id)) { %>
                 <form action="/shows/<%= show._id %>?_method=DELETE" method="POST">
                   <button id="action-button" class="col-12">Remove</button>
@@ -74,7 +74,6 @@
                   <%= show.name %>
                 </a>
               </h5>
-            
             </div>
           </div>
         </div?
@@ -83,29 +82,31 @@
   </div>  
 </div>
 
+<h3 id="header" class="text-center">Latest Reviews</h3>
 
 <div class="container">
   <div class="row">
-    <h3 id="header" class="text-center">Latest Reviews</h3>
-      <% shows.forEach(show => { %>
-        <% if (show.showType === "seen-it" && show.reviews.length ) { %> 
-          <div class="col text-center">
-            <div class="card" style="width: 12rem;">
-              <img src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/<%= show.imageUrl %>" class="card-img-top" alt="">
-              <div class="card-body">
-                <h5 class="card-title">
-                  <a href="/query/<%= show.tmbdShowId %>">
-                    <%= show.name %>
-                  </a>
-                </h5>
-                <% show.reviews.forEach(review => { %>
-                  <form action="/shows/<%= show._id %>/<%=review._id  %>" method="GET">
-                    <button id="action-button" class="col-12">Go To Review</button>
-                  </form>
-              </div>
-          <% }) %>
-        <% } %> 
-      <% }) %>  
+    <% shows.forEach(show => { %>
+      <% if (show.showType === "seen-it" && show.reviews.length ) { %> 
+        <div class="col text-center">
+          <div class="card" style="width: 12rem;">
+            <img src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/<%= show.imageUrl %>" class="card-img-top" alt="">
+            <div class="card-body">
+              <h5 class="card-title">
+                <a href="/query/<%= show.tmbdShowId %>">
+                  <%= show.name %>
+                </a>
+              </h5>
+              <% show.reviews.forEach(review => { %>
+                <form action="/shows/<%= show._id %>/<%=review._id  %>" method="GET">
+                  <button id="action-button" class="col-12">Go To Review</button>
+                </form>
+              <% }) %>
+            </div>
+          </div>
+        </div>
+      <% } %> 
+    <% }) %>  
   </div>
 </div>
 
