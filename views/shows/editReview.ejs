@@ -4,40 +4,44 @@
 <div class="container">
   <div class="row">
     <div class="col text-center">
-      <h1>Edit Review</h1>
+      <h1 id="header">Edit Review</h1>
     </div>
   </div>
 </div>      
 
-<h1><%= review.reviewTitle %> </h1>
-<h2>Rating: <%= review.rating %></h2>
 
-<form 
-id="add-review-form"
-action="/shows/<%= show._id %>/<%= review._id %>?_method=PUT"
-method="POST"
->
+<div class="container">
+  <div class="row">
+    <div class="col text-center">
+      <form 
+      id="add-review-form"
+      action="/shows/<%= show._id %>/<%= review._id %>?_method=PUT"
+      method="POST"
+      >
 
-  <input value="<%= review.reviewTitle %>" type="text" name="reviewTitle""><br>
-  <textarea name="reviewContent" id="" cols="30" rows="10"><%= review.reviewContent %></textarea>
-  <br>
+        <input id="comment-input-background" value="<%= review.reviewTitle %>" type="text" name="reviewTitle""><br>
+        <textarea id="comment-input-background" name="reviewContent" id="" cols="30" rows="10"><%= review.reviewContent %></textarea>
+        <br>
+    
 
-  <label for="rating-select">Rating:</label>
-  <select name="rating" id="rating-select">
-    <option value="1">.5</option>
-    <option value="1">1</option>
-    <option value="1">1.5</option>
-    <option value="2">2</option>
-    <option value="2">2.5</option>
-    <option value="3">3</option>
-    <option value="3">3.5</option>
-    <option value="4">4</option>
-    <option value="4">4.5</option>
-    <option value="5">5</option>
-  </select>
-  <br><br>
-  <button type="submit">submit</button>
-</form>
-<br><br>
+        <label for="rating-select">Rating:</label>
+        <select id="comment-input-background" name="rating" id="rating-select">
+          <option value="1">.5</option>
+          <option value="1">1</option>
+          <option value="1">1.5</option>
+          <option value="2">2</option>
+          <option value="2">2.5</option>
+          <option value="3">3</option>
+          <option value="3">3.5</option>
+          <option value="4">4</option>
+          <option value="4">4.5</option>
+          <option value="5">5</option>
+        </select>
+        <br>
+        <button id="inline-button" type="submit">submit</button>
+      </form>
+    </div>
+  </div>
+</div>      
 
 <%- include('../partials/footer') %>

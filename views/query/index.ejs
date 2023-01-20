@@ -4,7 +4,7 @@
 <div class="container">
   <div class="row">
     <div class="col text-center">
-      <h1>Search Results</h1>
+      <h1 id="header">Search Results</h1>
     </div>
   </div>
 </div>
@@ -35,7 +35,7 @@
             <input class="hidden" value="watchlist" type="text" name="showType">
             <input class="hidden" value="<%= user.profile._id %> " type="text" name="profileId">
             <input class="hidden" value="<%= profileData._id %>" type="text" name="addedBy">
-            <button class="btn btn-primary" type="submit">Watchlist</button>
+            <button id="action-button" type="submit" class="col-12">Watchlist</button>
           </form>
 
           <form id="new-form" action="/shows/new" method="POST">
@@ -46,7 +46,7 @@
             <input class="hidden" value="currently-watching" type="text" name="showType">
             <input class="hidden" value="<%= user.profile._id %> " type="text" name="profileId">
             <input class="hidden" value="<%= profileData._id %>" type="text" name="addedBy">
-            <button class="btn btn-primary" type="submit">Currently Watching</button>
+            <button id="action-button" type="submit" class="col-12">Currently Watching</button>
           </form>
 
           <form id="new-form" action="/shows/new" method="POST">
@@ -57,7 +57,7 @@
             <input class="hidden" value="seen-it" type="text" name="showType">
             <input class="hidden" value="<%= user.profile._id %> " type="text" name="profileId">
             <input class="hidden" value="<%= profileData._id %>" type="text" name="addedBy">
-            <button class="btn btn-primary" type="submit">Seen It</button>
+            <button id="action-button" type="submit" class="col-12">Seen It</button>
           </form>
 
           <form id="new-form" action="/shows/new" method="POST">  
@@ -68,7 +68,7 @@
             <input class="hidden" value="favorite" type="text" name="showType">
             <input class="hidden" value="<%= user.profile._id %> " type="text" name="profileId">
             <input class="hidden" value="<%= profileData._id %>" type="text" name="addedBy">
-            <button class="btn btn-primary" type="submit">Favorite</button>
+            <button id="action-button" type="submit" class="col-12">Favorite</button>
           </form>
 
         </div>

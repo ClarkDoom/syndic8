@@ -70,7 +70,7 @@
             <img src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/<%= show.imageUrl %>" class="card-img-top" alt="">
             <div class="card-body">
               <h5 class="card-title">
-                <a href="/shows/currently-watching">
+                <a href="/query/<%= show.tmbdShowId %>">
                   <%= show.name %>
                 </a>
               </h5>
@@ -93,7 +93,11 @@
             <div class="card" style="width: 12rem;">
               <img src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/<%= show.imageUrl %>" class="card-img-top" alt="">
               <div class="card-body">
-                <h5 class="card-title"><%= show.name %></h5>
+                <h5 class="card-title">
+                  <a href="/query/<%= show.tmbdShowId %>">
+                    <%= show.name %>
+                  </a>
+                </h5>
                 <% show.reviews.forEach(review => { %>
                   <form action="/shows/<%= show._id %>/<%=review._id  %>" method="GET">
                     <button id="action-button" class="col-12">Go To Review</button>
