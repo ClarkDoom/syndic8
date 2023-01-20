@@ -12,6 +12,13 @@
     color: white;
     background: rgb(17, 18, 21) !important; 
     } /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
+    #avatar {
+      border-radius: 100px;
+      padding: 20px;
+    }
+    #landing-page {
+      padding: 10px;
+    }
 </style>
 
 <% if (!user) { %>
@@ -90,18 +97,18 @@
       <div class="row">  
         <div class="col text-center">
           <div>
-            <img
+            <img id="avatar"
             src="<%= user.profile.avatar %>"
             alt="<%= user.profile.name %> avatar"
             />
           </div>
-            <h1><b>Welcome to Syndicate.<b></h1>
-            <h2>Keeping up with TV content made easy and social.</h2>
+            <h1 id="landing-page"><b>Welcome to Syndicate.<b></h1>
+            <h2 id="landing-page">Keeping up with TV content made easy and social.</h2>
             
             
             <% if(!profile.userName){ %> 
 
-              <h5>If this is your first time using Syndicate, please enter a @username below:</h5>
+              <h5 id="landing-page">If this is your first time using Syndicate, please enter a @username below:</h5>
             <!-- username input -->
               <form action="/profile/<%= user.profile._id %>/edit?_method=PATCH" method="POST">
                 <label for="username-input"></label>
@@ -112,16 +119,16 @@
             <% } %> 
             <!-- end -->
             <% if(profile.userName){ %> 
-              <h5>See what others are up to on the Community tab.</h5>
+              <h5 id="landing-page">See what others are up to on the Community tab.</h5>
            
-              <h5>Enter a show title to search and add shows to your lists.</h5>
-              <h5>Mark a show as "Seen It" to leave a review.</h5>
+              <h5 id="landing-page">Enter a show title to search and add shows to your lists.</h5>
+              <h5 id="landing-page">Mark a show as "Seen It" to leave a review.</h5>
 
-                <form action="/query" method="POST">
+                <form id="landing-page" action="/query" method="POST">
                   <label for="search-input"></label>
                   <input name="query" placeholder="enter show name" type="text" id="search-input">
                   <input class="hidden" name="profileId" value="<%= user.profile._id %>" type="text" id="profile-id">
-                  <button type="submit">Search</button>
+                  <button class="btn btn-primary type="submit">Search</button>
                 </form>
             <% } %> 
           
@@ -133,9 +140,9 @@
   <div class="container">
     <div class="row">
       <div class="col text-center">
-        <h1>Welcome to Syndic8!</h1><br>
-        <h2>Keeping up with TV content made easy and social.</h2><br>
-        <h5>Please Log In To Get Started!</h5>
+        <h1 id="landing-page"><b>Welcome to Syndic8!</b></h1><br>
+        <h2 id="landing-page">Keeping up with TV content made easy and social.</h2><br>
+        <h5 id="landing-page">Please Log In To Get Started!</h5>
       </div>
     </div>
   </div>
