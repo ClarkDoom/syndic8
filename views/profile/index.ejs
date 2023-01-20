@@ -4,9 +4,13 @@
 <div class="container">
   <div class="row">
     <div class="col text-center">
-      <h1><b>Profile</b></h1>
-      <a href="/profile/<%= user.profile._id %>/edit">Edit Profile</a>
-      <h3>@<%= profile.userName %> </h1>
+      <h1 id="header">Profile</h1>
+      <% if (profile._id.equals(user.profile._id)) { %> 
+        <form action="/profile/<%= user.profile._id %>/edit" method="GET">
+          <button id="edit-profile-button" class="col-1">Edit Profile</button>
+        </form>
+      <% } %>
+      <h3>@<%= profile.userName %></h3>    
     </div>
   </div>
 </div>
@@ -14,7 +18,6 @@
 <div class="container">
   <div class="row">
     <div class="col text-center">
-      <h5>About Me:</h5>
       <p><i><%= profile.aboutMe %></i></p>
     </div>
   </div>
@@ -23,11 +26,10 @@
 <div class="container">
   <div class="row">
     <div class="col text-center">
-      <h3>Favorites</h3>
+      <h3 id="header">Favorites</h3>
     </div>
   </div>
 </div>
-
 
 <div class="container">
   <div class="row">
@@ -37,10 +39,14 @@
           <div class="card" style="width: 12rem;">
             <img src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/<%= show.imageUrl %>" class="card-img-top" alt="">
             <div class="card-body">
-              <h5 class="card-title"><%= show.name %></h3>
+              <h5 class="card-title">
+                <a href="/query/<%= show.tmbdShowId %>">
+                  <%= show.name %>
+                </a>
+              </h3>
               <% if (show.addedBy.equals(user.profile._id)) { %>
                 <form action="/shows/<%= show._id %>?_method=DELETE" method="POST">
-                  <button>Remove</button>
+                  <button id="action-button" class="col-12">Remove</button>
                 </form>
               <% } %> 
             </div>
@@ -52,45 +58,52 @@
 </div>
 
 
-<h3>Currently Watching</h3>
-<ul>
-  <% shows.forEach(show => { %>
-    <% if (show.showType === "currently-watching") { %> 
-      <h3><%= show.name %></h3>
-      <img width=10%" src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/<%= show.imageUrl %>" alt="">
-      <br>
-      <%= show.description %>
-      <br>
-      <br>
-    <% } %> 
-  <% }) %>  
-</ul>
+<h3 id="header" class="text-center">Currently Watching</h3>
 
-<h3>Latest Reviews</h3>
 
-<ul>
-  <% shows.forEach(show => { %>
-    <% if (show.showType === "seen-it" && show.reviews.length ) { %> 
-      <h3><%= show.name %></h3>
-      <img width=10%" src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/<%= show.imageUrl %>" alt=""><br>
-      <% show.reviews.forEach(review => { %>
-        Review Title: 
-        <%= review.reviewTitle %> 
-        <br>
-        Review:
-        <%= review.reviewContent %>
-        <br>
-        Rating: 
-        <%= review.rating %>
-        <br>
-        <a href="/shows/<%= show._id %>/<%=review._id  %>">Go To Review</a>
-        <br> 
-      <% }) %>
-      <br>
-      <br>
-    <% } %> 
-  <% }) %>  
-</ul>
+<div class="container">
+  <div class="row">
+    <% shows.forEach(show => { %>
+      <% if (show.showType === "currently-watching") { %> 
+        <div class="col text-center">
+          <div class="card" style="width: 12rem;">
+            <img src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/<%= show.imageUrl %>" class="card-img-top" alt="">
+            <div class="card-body">
+              <h5 class="card-title">
+                <a href="/shows/currently-watching">
+                  <%= show.name %>
+                </a>
+              </h5>
+            
+            </div>
+          </div>
+        </div?
+      <% } %> 
+    <% }) %>
+  </div>  
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <h3 id="header" class="text-center">Latest Reviews</h3>
+      <% shows.forEach(show => { %>
+        <% if (show.showType === "seen-it" && show.reviews.length ) { %> 
+          <div class="col text-center">
+            <div class="card" style="width: 12rem;">
+              <img src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/<%= show.imageUrl %>" class="card-img-top" alt="">
+              <div class="card-body">
+                <h5 class="card-title"><%= show.name %></h5>
+                <% show.reviews.forEach(review => { %>
+                  <form action="/shows/<%= show._id %>/<%=review._id  %>" method="GET">
+                    <button id="action-button" class="col-12">Go To Review</button>
+                  </form>
+              </div>
+          <% }) %>
+        <% } %> 
+      <% }) %>  
+  </div>
+</div>
 
 
 
