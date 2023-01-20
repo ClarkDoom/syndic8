@@ -21,9 +21,10 @@ function index(req, res) {
   Show.find({})
   .populate("addedBy")
   .then(shows => {
+    const reversedShows = shows.reverse()
     res.render('shows/index', {
       title: "Shows",
-      shows: shows
+      shows: reversedShows
     })
   })
 }
