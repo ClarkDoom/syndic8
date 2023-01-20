@@ -4,17 +4,17 @@
 <div class="container">
   <div class="row">
     <div class="col text-center">
-      <h1>Community Show List</h1>
+      <h1 id="community-header">Community Show List</h1>
     </div>
   </div>
 </div>
 
 <div class="container">
-  <div class="row">
+  <div class="row row-flex">
     <% shows.forEach(show => { %>
 
-      <div class="col">
-        <div class="card" style="width: 18rem;">
+      <div id="cards" class="col">
+        <div class="card" style="width: 12rem;">
 
           <img src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/<%= show.imageUrl %>" class="card-img-top" alt="...">
           <div class="card-body">
@@ -24,20 +24,18 @@
             <p class="card-text">Added By: <a href="/profile/<%= show.profileId %>"><%= show.addedBy.userName %></a></p> 
             <h6 class="card-text">Added to: <%= show.showType %></h6>
 
-            <p class="card-text"><b>Reviews:</b> <br><br>
-              <% show.reviews.forEach(review => { %>
-                <td>
-                  <b>Title:</b> 
-                  <a href="/shows/<%= show._id %>/<%= review._id %>">
-                    <%= review.reviewTitle %>
-                  </a>
-                  <br>
-                </td>
-                <td><b>Review: </b><%= review.reviewContent %></td>
-                <br>
-                <td><b>Rating: </b><%= review.rating %> </td>
-              <% }) %>
-            </p>
+            <% if (show.reviews.length > 0) { %>
+                <% show.reviews.forEach(review => { %>
+                  <td>
+                    <a href="/shows/<%= show._id %>/<%= review._id %>">
+                      Link to Review(s)
+                    </a>
+                  </td>
+                <% }) %>
+              </p>             
+            <% } %>
+            
+
 
           </div>
         </div>
