@@ -18,6 +18,10 @@ function index(req, res) {
       })
     })
   })
+  .catch(err => {
+    console.log(err)
+    res.redirect('/home')
+  })
 }
 
 function edit(req, res) {
@@ -27,6 +31,10 @@ function edit(req, res) {
       title: "Profile",
       profile
     })
+  })
+  .catch(err => {
+    console.log(err)
+    res.redirect('/home')
   })
 }
 
@@ -43,15 +51,16 @@ function updateAboutMe(req, res) {
     res.redirect(`/profile/${req.params.profileId}`)
     }
   })
+  .catch(err => {
+    console.log(err)
+    res.redirect('/home')
+  })
 }
 
-function addFavorite(req, res) {
-  console.log("ALERT ", req.user)
-}
+
 
 export {
   index,
   edit,
-  addFavorite,
   updateAboutMe
 }

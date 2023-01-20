@@ -15,6 +15,10 @@ function create(req,res) {
       res.redirect(`/shows/${req.body.showType}`)
     }
   })
+  .catch(err => {
+    console.log(err)
+    res.redirect('/home')
+  })
 }
 
 function index(req, res) {
@@ -26,6 +30,10 @@ function index(req, res) {
       title: "Shows",
       shows: reversedShows
     })
+  })
+  .catch(err => {
+    console.log(err)
+    res.redirect('/home')
   })
 }
 
@@ -40,6 +48,10 @@ function watchlist(req, res) {
       shows: watchlistShows
     })
   })
+  .catch(err => {
+    console.log(err)
+    res.redirect('/home')
+  })
 }
 
 function currentlyWatching(req, res) {
@@ -52,6 +64,10 @@ function currentlyWatching(req, res) {
       title: "Currently Watching",
       shows: currentlyWatchingShows
     })
+  })
+  .catch(err => {
+    console.log(err)
+    res.redirect('/home')
   })
 }
 
@@ -66,6 +82,10 @@ function seenIt(req, res) {
       shows: seenItShows
     })
   })
+  .catch(err => {
+    console.log(err)
+    res.redirect('/home')
+  })
 }
 
 
@@ -78,6 +98,10 @@ function deleteShow(req, res) {
       res.redirect(`/shows/${show.showType}`)
     }
   })
+  .catch(err => {
+    console.log(err)
+    res.redirect('/home')
+  })
 }
 
 function show(req,res) {
@@ -88,6 +112,10 @@ function show(req,res) {
       title: "Show Details", 
       show: show
     })
+  })
+  .catch(err => {
+    console.log(err)
+    res.redirect('/home')
   })
 }
 
@@ -132,6 +160,10 @@ function showReview(req, res) {
       review,
     })
   })
+  .catch(err => {
+    console.log(err)
+    res.redirect('/home')
+  })
 }
 
 function deleteReview(req, res) {
@@ -143,7 +175,7 @@ function deleteReview(req, res) {
   })
   .catch(err => {
     console.log(err)
-    res.redirect('/')
+    res.redirect('/home')
   })
 }
 
@@ -156,6 +188,10 @@ function editReview(req,res) {
       show,
       review,
     })
+  })
+  .catch(err => {
+    console.log(err)
+    res.redirect('/home')
   })
 }
 
@@ -170,7 +206,10 @@ function updateReview(req, res) {
     res.redirect(`/shows/${show._id}`)
     // res.send({ show });
   })
-  .catch(e => res.status(400).send(e));
+  .catch(err => {
+    console.log(err)
+    res.redirect('/home')
+  })
 }
 
 function createComment(req, res) {
@@ -184,7 +223,10 @@ function createComment(req, res) {
   .then((show) => {
     res.redirect(`/shows/${show._id}/${req.params.reviewId}`)
   })
-  .catch(e => res.status(400).send(e));
+  .catch(err => {
+    console.log(err)
+    res.redirect('/home')
+  })
 }
 
 function deleteComment(req, res) {
@@ -199,7 +241,10 @@ function deleteComment(req, res) {
     res.redirect(`/shows/${req.params.id}/${req.params.reviewId}`)
     
   })
-  .catch(e => res.status(400).send(e));
+  .catch(err => {
+    console.log(err)
+    res.redirect('/home')
+  })
 }
 
 function updateShowType(req,res) {
@@ -212,7 +257,7 @@ function updateShowType(req,res) {
   })
   .catch(err => {
     console.log(err)
-    res.redirect('/shows')
+    res.redirect('/home')
   })
 }
 

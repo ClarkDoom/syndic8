@@ -27,6 +27,10 @@ function search(req, res) {
       })
     })
   })
+  .catch(err => {
+    console.log(err)
+    res.redirect('/home')
+  })
 }
 
 function showSearch(req, res) {
@@ -45,6 +49,10 @@ function showSearch(req, res) {
       })
     })
   })
+  .catch(err => {
+    console.log(err)
+    res.redirect('/home')
+  })
 }
 
 
@@ -59,6 +67,10 @@ function seasonSearch(req, res) {
       results: data,
       title: "Season Details"
     })
+  })
+  .catch(err => {
+    console.log(err)
+    res.redirect('/home')
   })
 }
 
