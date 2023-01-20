@@ -4,7 +4,7 @@
 <div class="container">
   <div class="row">
     <div class="col text-center">
-      <h1>Seen It</h1>
+      <h1 id="header">Seen It</h1>
     </div>
   </div>
 </div>
@@ -22,13 +22,15 @@
             </a>
             <div class="card-body">
               <h5 class="card-title">
-                <a href="/shows/<%= show._id %>">
                   <%= show.name %>
-                </a>
               </h5>
               <p class="card-text"><%= show.description %></p>
+
+              <form action="/shows/<%= show._id %>" method="GET">
+                <button id="action-button" class="col-12">Write Review</button>
+              </form>
               <form action="/shows/<%= show._id %>?_method=DELETE" method="POST">
-                <button>Remove</button>
+                <button id="action-button" class="col-12">Remove</button>
               </form>
         
             </div>
