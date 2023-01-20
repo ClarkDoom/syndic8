@@ -112,7 +112,7 @@
             <!-- username input -->
               <form action="/profile/<%= user.profile._id %>/edit?_method=PATCH" method="POST">
                 <label for="username-input"></label>
-                <input name="userName" placeholder="enter @username" type="text" id="username-input">
+                <input name="userName" placeholder="enter username" type="text" id="username-input">
                 <input name="location" value="homePage" class="hidden" type="text">
                 <button type="submit">Submit</button>
               </form>
@@ -128,7 +128,7 @@
                   <label for="search-input"></label>
                   <input name="query" placeholder="enter show name" type="text" id="search-input">
                   <input class="hidden" name="profileId" value="<%= user.profile._id %>" type="text" id="profile-id">
-                  <button class="btn btn-primary type="submit">Search</button>
+                  <button id="inline-button" type="submit">Search</button>
                 </form>
             <% } %> 
           

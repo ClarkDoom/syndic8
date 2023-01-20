@@ -22,7 +22,7 @@
               <h5 class="card-title"><%= show.name %></h5>
             </a>
             <p class="card-text">Added By: <a href="/profile/<%= show.profileId %>"><%= show.addedBy.userName %></a></p> 
-            <h6 class="card-text">Added to: <%= show.showType %></h6>
+            <h6 class="card-text">Added To: <%= show.showType %></h6>
 
             <% if (show.reviews.length > 0) { %>
                 <% show.reviews.forEach(review => { %>

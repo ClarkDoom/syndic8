@@ -4,104 +4,105 @@
 <div class="container">
   <div class="row">
     <div class="col text-center">
-      <h1>Review Details</h1>
+      <h1 id="header">Review Details</h1>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h5><%= review.showTitle %></h5>
+      <h6>@<%= review.author %></h6>
+      <h6>Title: <%= review.reviewTitle %></h6>
+      <h6>Rating: <%= review.rating %></h6> 
+      <h6>Review: <%= review.reviewContent %></h6> 
+      <% if (show.addedBy._id.equals(user.profile._id)) { %>
+        <form 
+          action="/shows/<%= show._id %>/<%= review._id %>?_method=DELETE" 
+          method="POST"
+        >
+          <button id="inline-button">Delete</button>
+        </form>
+      <% } %>
     </div>
   </div>
 </div>
 
 
 
-Show Name: <%= review.showTitle %> 
-<br>
-Reviewer: <%= review.author %> 
-<br>
 
-Review Title: <%= review.reviewTitle %> 
-<br>
 
-Review Content: <%= review.reviewContent %> 
-<br>
+<div class="container">
+  <div class="row">
+    <div class="col text-center">
+      <h1 id="header">Leave A Comment</h1>
+    </div>
+  </div>
+</div>
 
-Review Rating: <%= review.rating %> 
-<br>
+<div class="container">
+  <div class="row">
+    <div class="col text-center">
+      <form 
+        id="add-comment-form" 
+        action="/shows/<%= show._id %>/<%= review._id %>/add-comment"
+        method="POST"
+      > 
+        <label for="reaction-select">Reaction:</label>
+        <select id="comment-input-background" name="reaction" id="reaction-select">
+          <option value="👍">👍</option>
+          <option value="👎">👎</option>
+          <option value="😑">😑</option>
+          <option value="😂">😂</option>
+          <option value="🧠">🧠</option>
+        </select>
+        <br>
+        <br>
+        <label for="comment-text"></label>
+        <textarea id="comment-input-background" placeholder="Enter comment here" name="commentText" id="comment-text" cols="30" rows="10"></textarea>
+        <br>
+        <button id="inline-button" type="submit">Save comment</button>
+      </form>
+    </div>
+  </div>
+</div>
 
-<% if (show.addedBy._id.equals(user.profile._id)) { %>
-  <form 
-    action="/shows/<%= show._id %>/<%= review._id %>?_method=DELETE" 
-    method="POST"
-  >
-    <button>Delete</button>
-  </form>
-<% } else { %>
+<div class="container">
+  <div class="row">
+    <div class="col text-center">   
+      <h1 id="header">Comments</h1>
+    </div>
+  </div>
+</div>
 
-<% } %>  
-
-<h1>Leave A Comment</h1>
-
-<form 
-  id="add-comment-form" 
-  action="/shows/<%= show._id %>/<%= review._id %>/add-comment"
-  method="POST"
->
-  <!-- add profile id variable to value -->
- 
-
-  <label for="reaction-select">Reaction:</label>
-  <select name="reaction" id="reaction-select">
-    <option value="👍">👍</option>
-    <option value="👎">👎</option>
-    <option value="😑">😑</option>
-    <option value="😂">😂</option>
-    <option value="🧠">🧠</option>
-  </select>
-  <br>
-  <br>
-
-  <label for="comment-text">Comment:</label>
-  <br>
-  <textarea name="commentText" id="comment-text" cols="30" rows="10"></textarea>
-  <br>
-  <button type="submit">Save comment</button>
-</form>
-
-<h1>Comments</h1>
-
-<% if (review.comments.length) { %>
-  <table>
-    <thead>
-      <tr>
-        <!-- update to match comment model  -->
-        <th>Commenter</th>
-        <th>Comment Text</th>
-        <th>Reaction</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% let total = 0 %> 
-      <% review.comments.forEach(function(comment) { %>
-        <% total += comment.rating %>
-        <tr>
-          <td><%= comment.commenter.userName %></td>
-          <td><%= comment.commentText %></td>
-          <td><%= comment.reaction %> </td>
-          <% if(comment.commenter._id.equals(user.profile._id)) { %> 
-            <td> 
+<div class="container">
+  <div class="row justify-content-center">
+    
+      <% if (review.comments.length) { %>   
+        
+        <% review.comments.forEach(function(comment) { %>
+          <div class="col-3 text-center" id="comment">
+            <h5><b><%= comment.commenter.userName %></b></h5>
+            <p><%= comment.commentText %></p>
+            <p><%= comment.reaction %></p>
+            <% if(comment.commenter._id.equals(user.profile._id)) { %> 
               <form 
                 action="/shows/<%= show._id %>/<%= review._id %>/<%= comment._id %>?_method=DELETE" 
                 method="POST"
               >
                 <button>Delete</button>
               </form>
-            </td>
-          <% } else { %>
-            <td></td>
-          <% } %>  
-        </tr>
-      <% }) %>
-    </tbody>
-  </table>
-<% } else { %>
-  <h3>No Comments Yet</h3>
-<% } %>
+            <% } %>
+          </div>
+        <% }) %>
+        
+      <% } else { %>
+        <h3>No Comments Yet</h3>
+      <% } %>
+    
+  </div>
+</div>
 
 <%- include('../partials/footer') %>

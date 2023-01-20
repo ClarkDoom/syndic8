@@ -35,7 +35,7 @@
   <div class="row">
     <% shows.forEach(show => { %>
       <% if (show.showType === "favorite") { %>
-        <div class="col text-center">
+        <div class="col text-center" id="cards">
           <div class="card" style="width: 12rem;">
             <img src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/<%= show.imageUrl %>" class="card-img-top" alt="">
             <div class="card-body">
