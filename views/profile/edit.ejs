@@ -9,26 +9,20 @@
   </div>
 </div>
 
-
-<% if (user?.profile.avatar) { %>
-  <div>
-    <img
-    src="<%= user.profile.avatar %>"
-    alt="<%= user.profile.name %> avatar"
-    />
+<div class="container">
+  <div class="row">
+    <div class="col text-center">
+      <form action="/profile/<%= user.profile._id %>/edit?_method=PATCH" method="POST">
+        <p>Change Username:</p>
+        <input id="comment-input-background" value="<%= profile.userName %>" type="text" name="userName" id="username-input">
+        <br><br>
+        <p>Change About Me:</p>
+        <textarea id="comment-input-background" name="aboutMe" id="about-me" cols="30" rows="10"><%= profile.aboutMe %></textarea>
+        <br>
+        <button id="inline-button" type="submit">Save</button>
+      </form>
+    </div>
   </div>
-  <% } %>
-
-  <!-- placeholder - needs to pull username from profile of user logged in  -->
-  
-  <form action="/profile/<%= user.profile._id %>/edit?_method=PATCH" method="POST">
-    <label for="username-input">Username: </label>
-    <input value="<%= profile.userName %>" type="text" name="userName" id="username-input"><br>
-
-    <label for="about-me-input">About Me: </label>
-    <textarea id="about-me-input" name="aboutMe" id="about-me" cols="30" rows="10"><%= profile.aboutMe %></textarea>
-    <br>
-    <button type="submit">Save</button>
-  </form>
+</div>
 
 <%- include('../partials/footer') %>
