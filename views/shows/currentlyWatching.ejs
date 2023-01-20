@@ -4,7 +4,7 @@
 <div class="container">
   <div class="row">
     <div class="col text-center">
-      <h1>Currently Watching</h1>
+      <h1 id="header">Currently Watching</h1>
     </div>
   </div>
 </div>
@@ -19,14 +19,18 @@
 
             <img src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/<%= show.imageUrl %>" class="card-img-top" alt="...">
             <div class="card-body">
-              <h5 class="card-title"><%= show.name %></h5>
+              <h5 class="card-title">
+                <a href="/query/<%= show.tmbdShowId %>">
+                  <%= show.name %>
+                </a>
+              </h5>
               <p class="card-text"><%= show.description %></p>
               <form action="/shows/<%= show._id %>/update-show-type?_method=PATCH" method="POST">
                 <input class="hidden" value="seen-it" type="text" name="showType">
-                <button class="btn btn-primary" type="submit">Seen It</button>
+                <button id="action-button" class="col-12" type="submit">Seen It</button>
               </form>
               <form action="/shows/<%= show._id %>?_method=DELETE" method="POST">
-                <button class="btn btn-primary">Remove</button>
+                <button id="action-button" class="col-12">Remove</button>
               </form>
             </div>
         
