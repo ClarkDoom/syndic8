@@ -31,13 +31,17 @@ function edit(req, res) {
 }
 
 function updateAboutMe(req, res) {
-  console.log("ALERT", req.params.profileId)
   for (let key in req.body) {
     if (req.body[key] === "") delete req.body[key]
   }
   Profile.findByIdAndUpdate(req.params.profileId, req.body, {new: true})
   .then(profile => {
+    console.log("ALERT req.body.location: ", req.body.location)
+    if(req.body.location == "homePage") {
+      res.redirect(`/home`)
+    } else {
     res.redirect(`/profile/${req.params.profileId}`)
+    }
   })
 }
 

@@ -97,27 +97,34 @@
           </div>
             <h1><b>Welcome to Syndicate.<b></h1>
             <h2>Keeping up with TV content made easy and social.</h2>
-            <% if(user.profile.userName === ""){ %> 
+            
+            
+            <% if(!profile.userName){ %> 
+
               <h5>If this is your first time using Syndicate, please enter a @username below:</h5>
             <!-- username input -->
               <form action="/profile/<%= user.profile._id %>/edit?_method=PATCH" method="POST">
                 <label for="username-input"></label>
                 <input name="userName" placeholder="enter @username" type="text" id="username-input">
+                <input name="location" value="homePage" class="hidden" type="text">
                 <button type="submit">Submit</button>
               </form>
             <% } %> 
             <!-- end -->
-            <h5>See what other's are up to on the Community tab.</h5>
-            <% if(user.profile.userName !== "") { %> 
+            <% if(profile.userName){ %> 
+              <h5>See what other's are up to on the Community tab.</h5>
+           
               <h5>Enter a show title to search and add shows to your lists.</h5>
-              <h5>Mark a show as "Seen It" to leave a review</h5>
-              <form action="/query" method="POST">
-                <label for="search-input"></label>
-                <input name="query" placeholder="enter show name" type="text" id="search-input">
-                <input class="hidden" name="profileId" value="<%= user.profile._id %>" type="text" id="profile-id">
-                <button type="submit">Search</button>
-              </form>
+              <h5>Mark a show as "Seen It" to leave a review.</h5>
+
+                <form action="/query" method="POST">
+                  <label for="search-input"></label>
+                  <input name="query" placeholder="enter show name" type="text" id="search-input">
+                  <input class="hidden" name="profileId" value="<%= user.profile._id %>" type="text" id="profile-id">
+                  <button type="submit">Search</button>
+                </form>
             <% } %> 
+          
         </div>
       </div>
     </div>
